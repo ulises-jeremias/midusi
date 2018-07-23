@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-setwd('kitematic/sgemm_product')
+setwd('midusi/sgemm_product')
 
 originalCsvData <- read.csv(file = "sgemm_product.csv", head = TRUE, sep = ',')
 
@@ -26,6 +26,6 @@ cat("Attributes Name: ", colnames(filteredData), "\n")
 
 write.csv(filteredData, "filtered_sgemm_product.csv", row.names = FALSE)
 
-View(filteredData)
+segmmProductData <- read.csv(file = "filtered_sgemm_product.csv", head = TRUE, sep = ',')
 
-# plots
+View(segmmProductData)

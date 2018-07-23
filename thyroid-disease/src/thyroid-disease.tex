@@ -44,28 +44,28 @@ El conjunto de datos seleccionado permite la clasificación de pacientes entre a
 \begin{itemize}
     \item \textit{age}: Este atributo corresponde a la edad del paciente. En un valor numérico continuo que toma valores de $R$.
     \item \textit{sex}: Este atributo corresponde al sexo del paciente. Toma valores del conjunto $\{M, F\}$ y presenta valores faltante.
-    \item \textit{on\_thyroxine}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_on\_thyroxine}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{on\_antithyroid\_medication}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{thyroid\_surgery}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_hyphotiroid}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_hyperthyroid}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{pregnant}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{sick}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{tumor}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{on\_thyroxine}:  \textit{Thyroxine} es la principal hormona generada por la glándula tiroides. Cuando se detecta mucha thyroxine y triyodotironina entonces reduce la producción de hormonas \textit{(TSH)}. Relacionado con goitre, este es una forma de reconocer demasiada thyroxine, la cual es causada por hipertiroidismo. Muy poca es causada por hypotiroidismo. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_on\_thyroxine}: Este atributo indica si fue medido \textit{on\_thyroxine}. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{on\_antithyroid\_medication}: Antithyroid es un medicamento que actúa sobre las hormonas tiroides. Este atributo indica si el paciente toma dicha medicación. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{thyroid\_surgery}: Este atributo indica si el paciente ha tenido una cirugía de tiroides. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_hyphotiroid}: Este atributo indica si le fue consultado al paciente si tenía hipotiroidismo. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_hyperthyroid}: Este atributo indica si le fue consultado al paciente si tenía hipertiroidismo. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{pregnant}: Este atributo indica si el paciente esta transitando un embarazo. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{sick}: Este atributo indica si el paciente estaba enfermo al tomar los datos. Toma valores del conjunto $\{f, t\}$.
+    \item \textit{tumor}: Este atributo indica si el paciente tenía un tumor al tomar los datos. Toma valores del conjunto $\{f, t\}$.
     \item \textit{lithium}: Toma valores del conjunto $\{f, t\}$.
     \item \textit{goitre}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{TSH\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{TSH\_measured}: Este atributo indica si se mide el \textit{TSH} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{TSH}: Toma valores de $R$.
-    \item \textit{T3\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{T3\_measured}: Este atributo indica si se mide el \textit{T3} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{T3}: Toma valores de $R$.
-    \item \textit{TT4\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{TT4\_measured}: Este atributo indica si se mide el \textit{TT4} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{TT4}: Toma valores de $R$.
-    \item \textit{T4U\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{T4U\_measured}: Este atributo indica si se mide el \textit{T4U} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{T4U}: Toma valores de $R$.
-    \item \textit{FTI\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{FTI\_measured}: Este atributo indica si se mide el \textit{FTI} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{FTI}: Toma valores de $R$.
-    \item \textit{TBG\_measured}: Toma valores del conjunto $\{f, t\}$.
+    \item \textit{TBG\_measured}: Este atributo indica si se mide el \textit{TBG} del paciente. Toma valores del conjunto $\{f, t\}$.
     \item \textit{TBG}: Toma valores de $R$.
 \end{itemize}
 
@@ -88,22 +88,22 @@ Para el análisis de los datos se evalúan distintas gráficas de lo mismos, com
 
 Posteriormente, se calcula el índice de correlación lineal entre los atributos, para comenzar así con el análisis de las relaciones entre cada uno de ellos. El cálculo de los mismos se ve reflejado en la siguiente tabla (\ref{table:correlation_matrix}). \\
 
-\begin{table}[htb]
+\begin{table}[h!]
     \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|}
-        \hline
+    \begin{tabular}{ccccccc}
+
         Atributos & age & TSH & T3 & TT4 & TU4 & FTI \\
         \hline
         age & 1 & -0.007 & -0.269 & -0.091 & -0.194 & 0.015 \\
-        \hline
+
         TSH & -0.007 & 1 & -0.172 & -0.310 & 0.069 & -0.244 \\
-        \hline
+        
         T3 & -0.269 & -0.172 & 1 & 0.545 & 0.388 & 0.294 \\
-        \hline
+        
         TT4 & -0.091 & -0.310 & 0.545 & 1 & 0.323 & 0.685 \\
-        \hline
+        
         T4U & -0.194 & 0.069 & 0.388 & 0.323 & 1 & -0.284 \\
-        \hline
+        
         FTI & 0.015 & -0.244 & 0.294 & 0.685 & -0.283 & 1 \\
         \hline
     \end{tabular}
@@ -136,18 +136,7 @@ En la figura (\ref{figure:w_j48}) se puede observar el modelo obtenido utilizand
     \label{figure:w_j48}
 \end{figure}
 
-En la figura (\ref{figure:w_j48_performance}) se puede observar la performance del modelo obtenido aplicando el mismo sobre un conjunto de testing. \\
-
-\onecolumngrid
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{models/w_j48_performance}
-    \caption{Performance del modelo de Árbol generado utilizando el algoritmo C4.5 sobre un conjunto de testeo correspondiente al 30\% del conjunto total de datos.}
-    \label{figure:w_j48_performance}
-\end{figure*}
-
-\twocolumngrid
+En la figura (\ref{figure:w_j48_performance}) de la sección \ref{apendix:models:performance} se puede observar la performance del modelo obtenido aplicando el mismo sobre un conjunto de testing. \\
 
 \subsection{Reglas de Clasificación}
 
@@ -164,22 +153,45 @@ Para la construcción de este modelo se trabaja con un conjunto normalizado de l
     \label{figure:w_oneR}
 \end{figure}
 
-En la figura (\ref{figure:w_oneR_performance}) se puede observar la performance del modelo obtenido aplicando el mismo sobre un conjunto de testing. \\
-
-\onecolumngrid
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{models/w_oneR_performance}
-    \caption{Performance del modelo de reglas generado utilizando el algoritmo OneR sobre un conjunto de testeo correspondiente al 30\% del conjunto total de datos.}
-    \label{figure:w_oneR_performance}
-\end{figure*}
-
-\twocolumngrid
+En la figura (\ref{figure:w_oneR_performance}) de la seccion \ref{apendix:models:performance} se puede observar la performance del modelo obtenido aplicando el mismo sobre un conjunto de testing. \\
 
 \subsubsection{PRISM}
 
-Para la construcción del modelo de reglas utilizando el algoritmo PRISM se discretiza por frecuencia los datos numéricos probando le performance del modelo para distintos intervalos. Finalmente se opta por discretizar en 7 intervalos obteniendo los siguientes resultados. \\
+Para la construcción del modelo de reglas utilizando el algoritmo PRISM se discretiza por frecuencia los datos numéricos probando le performance del modelo para distintos intervalos. Finalmente se opta por discretizar en 7 intervalos obteniendo los resultados que se muestran en la figura (\ref{figure:prism_performance}) de la sección \ref{apendix:models:performance}. \\
+
+\section{Clustering}
+
+\subsection{K-Means}
+
+Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se evalúa el modelo resultante utilizando el índice de Davies Bouldin notando que se obtiene mejores resultandos cuando el número de clusters $k = 2$. Finalmente el índice de Davies Bouldin obtenido es 0.601. \\
+
+En el agrupamiento resultante se pueden ver dos agrupamientos, \textit{cluster\_0} y \textit{cluster\_1} en los que se ve que si el paciente pertenece al cluster\_0 no tiene hypotiroides. Al mismo tiempo, las instancias pertenecientes al cluster\_0 tienen TSH mas bajo, T3 mas alto
+TT4 bastante mas alto, FTI bastante mas alto. Hay muy pocos que son de cluster\_0 y se pueden ver los datos del agrupamiento en la tabla (\ref{table:k_means}). \\
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccccccc}
+        hypothyroid & cluster & cantidad \\
+        \hline
+        hypothyroid & cluster\_1 & 151.0 \\
+        negative & cluster\_0 & 39.0 \\
+        negative  & cluster\_1 & 2973.0 \\
+        \hline
+    \end{tabular}
+    \caption{Resultados del clustering generado con k\_means}
+    \label{table:k_means}
+\end{table}
+
+
+\section{Redes Neuronales}
+
+Se evalúan distintos modelos de redes neuronales con distintos conjuntos de prueba para evaluar así la performance de los mismos y comparar los modelos resultantes. \\
+
+\subsection{Perceptrón}
+
+
+
 
 \section{Análisis de Resultados}
 
@@ -364,6 +376,76 @@ Para la construcción del modelo de reglas utilizando el algoritmo PRISM se disc
 
 \onecolumngrid
 
+\clearpage
+
+\subsection{Modelos}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lll}
+
+        Atributo & cluster\_0 & cluster\_1 \\
+        \hline
+        
+        sex = M & 0.10256410256410256 & 0.2893725992317542 \\
+        sex = F & 0.8974358974358975 & 0.7106274007682458 \\
+        on\_thyroxine = f & 0.9487179487179487 & 0.8530729833546735 \\
+        on\_thyroxine = t & 0.05128205128205128 & 0.1469270166453265 \\
+        query\_on\_thyroxine = f & 1.0 & 0.9823943661971831 \\
+        query\_on\_thyroxine = t & 0.0 & 0.017605633802816902 \\
+        on\_antithyroid\_medication = f & 1.0 & 0.9865556978233034 \\
+        on\_antithyroid\_medication = t & 0.0 & 0.013444302176696543 \\
+        thyroid\_surgery = f & 1.0 & 0.9667093469910372 \\
+        thyroid\_surgery = t & 0.0 & 0.03329065300896287 \\
+        query\_hypothyroid = f & 0.9487179487179487 & 0.9234955185659411 \\
+        query\_hypothyroid = t & 0.05128205128205128 & 0.0765044814340589 \\
+        query\_hyperthyroid = f & 0.6923076923076923 & 0.926056338028169 \\
+        query\_hyperthyroid = t & 0.3076923076923077 & 0.07394366197183098 \\
+        pregnant = f & 0.9743589743589743 & 0.9801536491677336 \\
+        pregnant = t & 0.02564102564102564 & 0.019846350832266324 \\
+        sick = f & 1.0 & 0.9683098591549296 \\
+        sick = t & 0.0 & 0.03169014084507042 \\
+        tumor = f & 1.0 & 0.9871959026888605 \\
+        tumor = t & 0.0 & 0.012804097311139564 \\
+        lithium = f & 1.0 & 0.9993597951344431 \\
+        lithium = t & 0.0 & 6.402048655569782E-4 \\
+        goitre = f & 1.0 & 0.9683098591549296 \\
+        goitre = t & 0.0 & 0.03169014084507042 \\
+        age & 51.51282051282051 & 51.127720870678615 \\
+        TSH & 4.964323581180723 & 5.935150321052643 \\
+        T3 & 3.487115072933549 & 1.920431471620351 \\
+        TT4 & 249.64102564102564 & 107.09236555697822 \\
+        T4U & 0.616923076923077 & 0.9827091372498201 \\
+        FTI & 472.56410256410254 & 110.93890826408756 \\
+
+        \hline
+    \end{tabular}
+    \caption{Matriz de correlación lineal}
+    \label{table:k_means_model}
+\end{table}
+
+\subsubsection{Performance} \label{apendix:models:performance} 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{models/w_j48_performance}
+    \caption{Performance del modelo de Árbol generado utilizando el algoritmo C4.5 sobre un conjunto de testeo correspondiente al 30\% del conjunto total de datos.}
+    \label{figure:w_j48_performance}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{models/w_oneR_performance}
+    \caption{Performance del modelo de reglas generado utilizando el algoritmo OneR sobre un conjunto de testeo correspondiente al 30\% del conjunto total de datos.}
+    \label{figure:w_oneR_performance}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{models/prism_performance}
+    \caption{Performance del modelo de reglas generado utilizando el algoritmo PRISM sobre un conjunto de testeo correspondiente al 30\% del conjunto total de datos.}
+    \label{figure:prism_performance}
+\end{figure}
 
 
 \end{document}

@@ -9,5 +9,5 @@ if [ "$1" = "--stop" ]; then
   exit 0
 fi
 
-docker run --rm --name rstudio -d -p 8787:8787 -e USER=$USER -e PASSWORD=$USER -v ${1:-$(pwd)}:/home/$USER/kitematic rocker/rstudio > /dev/null
+docker run --rm --name rstudio -d -p 8787:8787 -e USER=$USER -e PASSWORD=$USER -v ${1:-$(pwd)}:/home/$USER/midusi rocker/rstudio > /dev/null
 echo "Puede acceder al ambiente de RStudio en localhost:8787"

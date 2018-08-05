@@ -46,7 +46,7 @@ El data set cuenta con un conjunto de 6 bases de datos. En general, estos conjun
 
 El conjunto de datos seleccionado permite la clasificación de pacientes entre aquellos que tienen hipotiroidismo y aquellos que no. En su versión presenta un total de 3163 ejemplares de los cuales se conocen 26 atributos. \\
 
-\textbf{Información de los atributos}
+\subsubsection{Información de los atributos}
 
 \begin{itemize}
     \item \textit{age}: Este atributo corresponde a la edad del paciente. En un valor numérico continuo que toma valores de $R$.
@@ -78,7 +78,7 @@ El conjunto de datos seleccionado permite la clasificación de pacientes entre a
 
 \subsection{Recolección del conjunto de datos}
 
-El conjunto de datos seleccionado se obtiene en el siguiente \href{http://archive.ics.uci.edu/ml/datasets/thyroid+disease}{repositorio}. Como se menciona anteriormente, en el mismo existe una gran cantidad de bases de datos y del mismo se opta por utilizar un conjunto de datos agregado más recientemente. \\
+El conjunto de datos seleccionado se obtiene del repositorio \textit{thyroid disease} del conjunto de data sets para machine learning de \textit{archive.ics.uci.edu}. Como se menciona anteriormente, en el mismo existe una gran cantidad de bases de datos y del mismo se opta por utilizar un conjunto de datos agregado más recientemente. \\
 
 En la descripción del mismo se duda de la integridad de los datos pero se comenta que de igual forma el otorgante es Garavan Institute al igual que el resto de los data sets. A su vez, no dice en ningun momento como es que estos datos son recolectados por lo que al momento de analizar estos datos, solo conocemos las fuentes utilizadas y la entidad otorgante. \\
 
@@ -132,20 +132,13 @@ Las \textbf{redes neuronales} son un modelo computacional basado en un gran conj
 
 Cada unidad neuronal está conectada con muchas otras y los enlaces entre ellas pueden incrementar o inhibir el estado de activación de las neuronas adyacentes. Cada unidad neuronal, de forma individual, opera empleando funciones de suma. Puede existir una función limitadora o umbral en cada conexión y en la propia unidad, de tal modo que la señal debe sobrepasar un límite antes de propagarse a otra neurona. \\
 
-Estos sistemas aprenden y se forman a sí mismos, en lugar de ser programados de forma explícita, y sobresalen en áreas donde la detección de soluciones o características es difícil de expresar con la programación convencional. \\
+Estos sistemas aprenden y se forman a sí mismos, en lugar de ser programados de forma explícita, y sobresalen en áreas donde la detección de soluciones o características es difícil de expresar con la programación convencional.
 
 \subsubsection{Perceptron}
 
 En el campo de las Redes Neuronales, el \textbf{perceptrón}, se refiere a la neurona artificial o unidad básica de inferencia en forma de discriminador lineal, a partir del cual se desarrolla un algoritmo capaz de generar un criterio para seleccionar un sub-grupo a partir de un grupo de componentes más grande. \\
 
-En las figuras \ref{figure:perceptron2_example} y \ref{figure:perceptron_example} se muestra la arquitectura que determina el comportamiento de un perceptron.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{theory/perceptron2}
-    \caption{Arquitectura de un perceptron.}
-    \label{figure:perceptron2_example}
-\end{figure}
+En la figura \ref{figure:perceptron_example} se muestra la arquitectura que determina el comportamiento de un perceptron.
 
 \begin{figure}[H]
     \centering
@@ -154,7 +147,7 @@ En las figuras \ref{figure:perceptron2_example} y \ref{figure:perceptron_example
     \label{figure:perceptron_example}
 \end{figure}
 
-La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura \ref{figure:linear_example}. \\
+La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura \ref{figure:linear_example}.
 
 \begin{figure}[H]
     \centering
@@ -165,7 +158,18 @@ La limitación de este algoritmo es que si dibujamos en un gráfico estos elemen
 
 El perceptrón puede utilizarse con otros tipos de perceptrones o de neurona artificial, para formar una red neuronal artificial más compleja.
 
-\subsubsection{Multiperceptron}
+\subsubsection{Multiperceptrón}
+
+El \textbf{perceptrón multicapa}, \textit{multi-perceptrón}, es una red neuronal artificial formada por múltiples capas, de tal manera que tiene capacidad para resolver problemas que no son linealmente separables que, como se explica en la subsección anterior, es la principal limitación del \textit{perceptrón}. El perceptrón multicapa puede estar totalmente o localmente conectado. En el primer caso cada salida de una neurona de la capa \textit{"i"} es entrada de todas las neuronas de la capa \textit{"i+1"}, mientras que en el segundo cada neurona de la capa \textit{"i"} es entrada de una serie de neuronas (región) de la capa \textit{"i+1"}. \\
+
+Se muestra en la figura (\ref{figure:multiperceptron_example}) un ejemplo de la arquitectura de un perceptron multicapa.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{theory/multiperceptron}
+    \caption{Ejemplo básico de un multiperceptron.}
+    \label{figure:multiperceptron_example}
+\end{figure}
 
 \section{Análisis de datos}
 
@@ -214,7 +218,7 @@ Para la creación del modelo de Árbol de decisión, se evalúan las distintas p
 
 Por lo tanto, como se menciona anteriormente, dado que el conjunto de datos presenta atributos numéricos de tipo continuo, no es completamente viable discretizar los mismos en intervalos si es que existe alguna forma de construir un modelo de Árbol de decisión evitando esto. \\
 
-Se opta finalmente la utilización del algoritmo C4.5 para generar el Árbol de decisión. Se genera el Árbol utilizando el operador W-J48 de rapidminer, utilizando la configuración por defecto de la mayoría de los flags exceptuando el flag C, \textit{confianza}. Luego de probar distintas configuraciones para dicho flag, se observa que dado un conjunto de entrenamiento del 70\% del total de los datos, con un 30\% de los datos destinado al testing del modelo, el porcentaje de acierto del modelo es 99.59\% cuando $C \geq 0.5$, por lo que se configura el flag con $C$ con el valor $0.5$. \\
+Se opta finalmente la utilización del algoritmo C4.5 para generar el Árbol de Decisión. Se genera el árbol utilizando el operador W-J48 de rapidminer con la configuración defecto de la mayoría de los flags exceptuando el flag C, \textit{confianza}. Luego de probar distintas configuraciones para el mismo, se observa que dado un conjunto de entrenamiento del 70\% del total de los datos, con un 30\% de los datos destinado al testing del modelo, el porcentaje de acierto del modelo es 99.59\% cuando $C \geq 0.5$, por lo que se configura el flag con $C$ con el valor $0.5$. \\
 
 En la figura (\ref{figure:w_j48}) se puede observar el modelo obtenido utilizando el algoritmo C4.5.
 
@@ -248,13 +252,15 @@ En la figura (\ref{figure:w_oneR_performance}) de la seccion \ref{apendix:models
 
 Para la construcción del modelo de reglas utilizando el algoritmo PRISM se discretiza por frecuencia los datos numéricos probando le performance del modelo para distintos intervalos. Finalmente se opta por discretizar en 7 intervalos obteniendo los resultados que se muestran en la figura (\ref{figure:prism_performance}) de la sección \ref{apendix:models:performance}. \\
 
+\textbf{CONTAR CANTIDAD DE REGLAS OBTENIDAS}
+
 \section{Clustering}
 
 \subsection{K-Means}
 
-Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se evalúa el modelo resultante utilizando el índice de Davies Bouldin notando que se obtiene mejores resultandos cuando el número de clusters $k = 2$. Finalmente el índice de Davies Bouldin obtenido es 0.601. \\
+Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se normalizan los datos utilizando normalización Z y se evalúa el modelo resultante utilizando el índice de Davies Bouldin notando que se obtiene mejores resultandos cuando el número de clusters $k$ es igual a 2, obteniendo finalmente un índice de Davies Bouldin igual a 0.601. \\
 
-En el agrupamiento resultante se pueden ver dos agrupamientos, \textit{cluster\_0} y \textit{cluster\_1} en los que se ve que si el paciente pertenece al cluster\_0 no tiene hypotiroides. Al mismo tiempo, las instancias pertenecientes al cluster\_0 tienen TSH mas bajo, T3 mas alto, TT4 bastante mas alto y FTI bastante mas alto. Hay muy pocos que son de cluster\_0 y se pueden ver los datos del agrupamiento en la tabla (\ref{table:k_means}). \\
+Como resultado se obtienen dos agrupamientos, \textit{cluster\_0} y \textit{cluster\_1}. En los mismos se ve que si el paciente pertenece al cluster\_0 no tiene hypotiroides. Al mismo tiempo, las instancias pertenecientes al cluster\_0 tienen TSH mas bajo, T3 mas alto, y TT4 y FTI bastante más alto que la media. Hay muy pocos que son de cluster\_0 y se pueden ver los datos del agrupamiento en la tabla (\ref{table:k_means}).
 
 
 \begin{table}[h!]
@@ -273,7 +279,6 @@ En el agrupamiento resultante se pueden ver dos agrupamientos, \textit{cluster\_
 
 Los datos referidos al agrupamiento se pueden ver  en la sección \ref{apendix:models:performance} del apéndice. \\
 
-
 \section{Redes Neuronales}
 
 Se evalúan distintos modelos de redes neuronales con distintos conjuntos de prueba para evaluar así la performance de los mismos y comparar los modelos resultantes.
@@ -284,41 +289,50 @@ Dado que el atributo etiqueta del data set es un es un conjunto de valores categ
 
 \textbf{Pesos y bias}
 
-Como se menciona en el marco teórico, la función discriminante que define al perceptron se define en función de un Intercept y distintos pesos o coeficientes asociados a cada uno de los valores de los atributos del data set. A continuación se enlistan los valores obtenidos luego de entrenar el perceptron.
+Como se menciona en el marco teórico, la función discriminante que define al perceptron se define en función de un Intercept y distintos pesos o coeficientes asociados a cada uno de los valores de los atributos del data set. A continuación se enlistan los valores obtenidos luego de entrenar el perceptron. \\
 
-\begin{align}
-  Intercept & = 1.3490659272630658 \\
-  w(sex = Male) & = -0.006 \\
-  w(sex = Female) & = 0.006 \\
-  w(on\_thyroxine = False) & = -0.002 \\
-  w(on\_thyroxine = True) & = 0.002 \\
-  w(query\_on\_thyroxine = False) & = -0.203 \\
-  w(query\_on\_thyroxine = True) & = 0.203 \\
-  w(on\_antithyroid\_medication = False) & = -0.018 \\
-  w(on\_antithyroid\_medication = True) & = 0.018 \\
-  w(thyroid\_surgery = False) & = 0.009 \\
-  w(thyroid\_surgery = True) & = -0.009 \\
-  w(query\_hypothyroid = False) & = -0.046 \\
-  w(query\_hypothyroid = True) & = 0.046 \\
-  w(query\_hyperthyroid = False) & = -0.002 \\
-  w(query\_hyperthyroid = True) & = 0.002 \\
-  w(pregnant = False) & = -0.052 \\
-  w(pregnant = True) & = 0.052 \\
-  w(sick = False) & = -0.019 \\
-  w(sick = True) & = 0.019 \\
-  w(tumor = False) & = -0.295 \\
-  w(tumor = True) & = 0.295 \\
-  w(lithium = False) & = -1.955 \\
-  w(lithium = True) & = 1.955 \\
-  w(goitre = False) & = 0.001 \\
-  w(goitre = True) & = -0.001 \\
-  w(age) & = -0.016 \\
-  w(TSH) & = 0.007 \\
-  w(T3) & = -0.025 \\
-  w(TT4) & = 0.232 \\
-  w(T4U) & = -0.102 \\
-  w(FTI) & = 0.438
-\end{align} \\
+\textit{Intercept} = 1.3490659272630658 \\
+
+En la tabla (\ref{table:perceptron_attr_weight}) se muestran los pesos asociados a cada atributo. \\
+
+\begin{table}[ht]
+    \begin{tabular}{l|l}
+        Atributo & Peso \\
+        \hline
+        sex = Male & -0.006 \\
+        sex = Female & 0.006 \\
+        on\_thyroxine = False & -0.002 \\
+        on\_thyroxine = True & 0.002 \\
+        query\_on\_thyroxine = False & -0.203 \\
+        query\_on\_thyroxine = True & 0.203 \\
+        on\_antithyroid\_medication = False & -0.018 \\
+        on\_antithyroid\_medication = True & 0.018 \\
+        thyroid\_surgery = False & 0.009 \\
+        thyroid\_surgery = True & -0.009 \\
+        query\_hypothyroid = False & -0.046 \\
+        query\_hypothyroid = True & 0.046 \\
+        query\_hyperthyroid = False & -0.002 \\
+        query\_hyperthyroid = True & 0.002 \\
+        pregnant = False & -0.052 \\
+        pregnant = True & 0.052 \\
+        sick = False & -0.019 \\
+        sick = True & 0.019 \\
+        tumor = False & -0.295 \\
+        tumor = True & 0.295 \\
+        lithium = False & -1.955 \\
+        lithium = True & 1.955 \\
+        goitre = False & 0.001 \\
+        goitre = True & -0.001 \\
+        age & -0.016 \\
+        TSH & 0.007 \\
+        T3 & -0.025 \\
+        TT4 & 0.232 \\
+        T4U & -0.102 \\
+        FTI & 0.438 \\
+    \end{tabular}
+    \caption{Tabla de pesos para cada atributo utilizando un perceptrón.}
+    \label{table:perceptron_attr_weight}
+\end{table}
 
 En las figuras (\ref{figure:perceptron_performance}) y (\ref{figure:perceptron_train_test_performance}) de la seccion \ref{apendix:models:performance} se puede observar la performance del modelo obtenido aplicando el mismo sobre un conjunto de testing. \\
 
@@ -520,9 +534,8 @@ En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multipe
 \subsubsection{Modelos} \label{apendix:models:models} 
 
 \begin{table}[ht]
-    \centering
-    \begin{tabular}{lll}
-
+    \begin{tabular}{|l|l|l|}
+        \hline
         Atributo & cluster\_0 & cluster\_1 \\
         \hline
         
@@ -556,7 +569,6 @@ En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multipe
         TT4 & 249.64102564102564 & 107.09236555697822 \\
         T4U & 0.616923076923077 & 0.9827091372498201 \\
         FTI & 472.56410256410254 & 110.93890826408756 \\
-
         \hline
     \end{tabular}
     \caption{Agrupamiento generado por el algoritmo \textit{k-means}}

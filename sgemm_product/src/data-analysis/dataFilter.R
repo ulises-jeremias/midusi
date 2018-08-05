@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-setwd('midusi/sgemm_product')
+setwd('midusi/sgemm_product/data')
 
 originalCsvData <- read.csv(file = "sgemm_product.csv", head = TRUE, sep = ',')
 

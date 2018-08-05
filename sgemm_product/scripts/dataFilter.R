@@ -11,20 +11,20 @@ cat("Number of Instances: ", nrow(originalCsvData), "\n")
 cat("Number of Attributes: ", length(originalCsvData), "\n")
 cat("Attributes Name: ", colnames(originalCsvData), "\n\n\n")
 
-filteredData <- subset(
+"originalCsvData <- subset(
   originalCsvData,
   MWG == NWG & (MWG == 64 | MWG == 128) &
   (SA == 1 & SB == 1)
-)
+)"
 
-filteredData$Run <- rowMeans(filteredData[, runColnames], na.rm = TRUE)
-filteredData <- filteredData[, !(colnames(filteredData) %in% runColnames)]
+originalCsvData$Run <- rowMeans(originalCsvData[, runColnames], na.rm = TRUE)
+originalCsvData <- originalCsvData[, !(colnames(originalCsvData) %in% runColnames)]
 
-cat("Number of Instances: ", nrow(filteredData), "\n")
-cat("Number of Attributes: ", length(filteredData), "\n")
-cat("Attributes Name: ", colnames(filteredData), "\n")
+cat("Number of Instances: ", nrow(originalCsvData), "\n")
+cat("Number of Attributes: ", length(originalCsvData), "\n")
+cat("Attributes Name: ", colnames(originalCsvData), "\n")
 
-write.csv(filteredData, "filtered_sgemm_product.csv", row.names = FALSE)
+write.csv(originalCsvData, "filtered_sgemm_product.csv", row.names = FALSE)
 
 segmmProductData <- read.csv(file = "filtered_sgemm_product.csv", head = TRUE, sep = ',')
 

@@ -18,8 +18,9 @@
 
 \documentclass[osajnl,twocolumn,showpacs,superscriptaddress,10pt]{revtex4-1} %% use 11pt for Applied Optics
 %%\documentclass[osajnl,preprint,showpacs,superscriptaddress,12pt]{revtex4-1} %% use 12pt for preprint option
-\usepackage{amsmath,amssymb,graphicx}
+\usepackage{amsmath,amssymb,graphicx,float,minted}
 \usepackage[utf8]{inputenc}
+\graphicspath{ {images/} }
 
 \begin{document}
 
@@ -89,19 +90,31 @@ El conjunto de datos permanece intacto comparado con el original a diferencia de
 
 En esta sección se introduce brevemente conceptos básicos necesarios para abordar los contenidos de las siguientes secciones del informe con mayores referencias y capacidad de entendimiento. \\
 
-\subsection{Árbol de decisión}
+\subsection{Representaciones Gráficas}
 
-Modelo descriptivo que, por su forma jerarquica, permite visualizar la organización de los atributos. Se produce a partir de la identificación sucesiva de atributos relevantes. El atributo correspondiente a la clase es cualitativo.
+\subsubsection{Diagrama de dispersión}
 
-\subsection{Árbol de clasificación}
+Un \textbf{diagrama de dispersión} es un tipo de diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos. \\
 
-Es un Arbol de decisión cuyas hojas se refieren al mismo atributo y es discreto.
+Se emplea cuando una variable está bajo el control del experimentador. Si existe un parámetro que se incrementa o disminuye de forma sistemática por el experimentador, se le denomina parámetro de control o variable independiente y habitualmente se representa a lo largo del eje horizontal (eje de las abscisas). La variable medida o dependiente usualmente se representa a lo largo del eje vertical (eje de las ordenadas). Si no existe una variable dependiente, cualquier variable se puede representar en cada eje y el diagrama de dispersión mostrará el grado de correlación (no causalidad) entre las dos variables. \\
 
-\subsection{Reglas de clasificación}
+Un diagrama de dispersión puede sugerir varios tipos de correlaciones entre las variables con un intervalo de confianza determinado. La correlación puede ser positiva (aumento), negativa (descenso), o nula (las variables no están correlacionadas). 
 
-Modelo supervisado que apartir de la información busca obtener reglas de la forma: $ A \rightarrow B $. \\
+\subsubsection{Diagrama de Caja}
 
-Comparado con el modelo explicado en la subsección anterior, las reglas de clasificación son más compactas que los arboles en donde cada regla puede representar un concepto distinto permitiendo así agregar o quitar reglas dinamicamente.
+Un \textbf{diagrama de caja}, también conocido como \textit{diagrama de caja y bigotes}, es un gráfico que está basado en cuartiles y mediante el cual se visualiza la distribución de un conjunto de datos. Está compuesto por un rectángulo (la caja) y dos brazos (los bigotes). \\
+
+Es un gráfico que suministra información sobre los valores mínimo y máximo, los cuartiles Q1, Q2 o mediana y Q3, y sobre la existencia de valores atípicos y la simetría de la distribución. Primero es necesario encontrar la mediana para luego encontrar los 2 cuartiles restantes. \\
+
+Un diagrama de cajas proporcionan una visión general de la simetría de la distribución de los datos; si la mediana no está en el centro del rectángulo, la distribución no es simétrica. Son útiles para ver la presencia de valores atípicos también llamados outliers. Pertenece a las herramientas de las estadística descriptiva. Permite ver como es la dispersión de los puntos con la mediana, los percentiles 25 y 75 y los valores máximos y mínimos. Ponen en una sola dimensión los datos de un histograma, facilitando así el análisis de la información al detectar que el 50\% de la población está en los límites de la caja.
+
+\subsubsection{Histograma}
+
+En estadística, un \textbf{histograma} es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados. Sirven para obtener una "primera vista" general, o panorama, de la distribución de la población, o de la muestra, respecto a una característica, cuantitativa y continua (como la longitud o el peso). De esta manera ofrece una visión de grupo permitiendo observar una preferencia, o tendencia, por parte de la muestra o población por ubicarse hacia una determinada región de valores dentro del espectro de valores posibles (sean infinitos o no) que pueda adquirir la característica.
+
+\subsubsection{Diagramas de Barras}
+
+Un \textbf{diagrama de barras} es una forma de representar gráficamente un conjunto de datos o valores, y está conformado por barras rectangulares de longitudes proporcionales a los valores representados. Los gráficos de barras son usados para comparar dos o más valores. Las barras pueden orientarse horizontal o verticalmente.
 
 \subsection{Clustering}
 
@@ -175,6 +188,78 @@ Para el análisis de los datos se evalúan distintas gráficas de lo mismos, com
 \textit{\footnotesize Se dispone de las gráficas correspondientes a los atributos en la sección \ref{apendix:images:attr} del apéndice.}
 \end{flushright}
 
+\section{Método Experimental}
+
+En esta sección se detalla todo lo referido al estudio y la creación de los distintos modelos de sistemas inteligentes utilizados para el estudio del conjunto de datos elegido. \\
+
+Para el análisis de este dataset se utilizan dos modelos de sistemas inteligentes detallados a continuación.
+
+\section{Clustering}
+
+\subsection{K-Means}
+
+Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se evalúa la calidad del modelo resultante utilizando el índice de Silhouette notando que se obtienen mejores resultandos cuando el número de clusters $k$ es igual a 2, obteniendo finalmente un índice de Silhouette igual a 0.824. Cabe destacar que el indice obtenido se calcula utilizando $1000$ ejemplos dado que resulta imposible utilizar la totalidad de los datos debido al consumo exesivo de memoria. Una comparativa entre la cantidad de clusters y el indice de Silhouette obtenido se puede observar en la tabla (\ref{table:clusters_silhouette}). \\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccccccc}
+        centroides & tiempo & silhouette \\
+        \hline
+        2 & 1.60s	& 0.824 \\
+        3 & 1.42s	& 0.749 \\
+        4 & 3.19s	& 0.587 \\
+        5 & 3.26s	& 0.512 \\
+        6 & 2.43s	& 0.503 \\
+        7 & 3.01s	& 0.538 \\
+        8 & 3.33s	& 0.380 \\
+        9 & 3.43s	& 0.396 \\
+        \hline
+    \end{tabular}
+    \caption{Comparativa entre la cantidad de clusters y el indice de Silhouette obtenido}
+    \label{table:clusters_silhouette}
+\end{table}
+
+Como resultado se obtienen dos agrupamientos, \textit{cluster\_0} y \textit{cluster\_1}. Se pueden ver los datos del agrupamiento en la tabla (\ref{table:k_means}).
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|ccc|ccc|}
+        \hline
+        cluster & atributo & centroide & cluster & atributo & centroide \\
+        \hline
+        0	& MWG & 77.454 & 1 &	MWG & 116.948 \\
+        0	& NWG & 77.428 & 1 &	NWG & 117.277 \\
+        0	& KWG & 25.436 & 1 &	KWG & 26.465 \\
+        0	& MDIMC & 14.294 & 1 &	MDIMC & 9.517 \\
+        0	& NDIMC & 14.316 & 1 &	NDIMC & 9.241 \\
+        0	& MDIMA & 17.385 & 1 &	MDIMA & 17.201 \\
+        0	& NDIMB & 17.380 & 1 &	NDIMB & 17.265 \\
+        0	& KWI & 4.955 & 1 &	KWI & 5.556 \\
+        0	& VWM & 2.382 & 1 &	VWM & 3.266 \\
+        0	& VWN & 2.387 & 1 &	VWN & 3.211 \\
+        0	& STRM & 0.500 & 1 &	STRM & 0.502 \\
+        0	& STRN & 0.500 & 1 &	STRN & 0.505 \\
+        0	& SA & 0.482 & 1 &	SA & 0.723 \\
+        0	& SB & 0.482 & 1 &	SB & 0.720 \\
+        0	& Run & 132.668 & 1 &	Run & 1265.095 \\
+        \hline
+    \end{tabular}
+    \caption{Resultados del clustering generado con k\_means}
+    \label{table:k_means}
+\end{table}
+
+\subsection{Redes Neuronales}
+
+Para crear un modelo de redes neuronales que se adapte a las necesidades planteadas anteriormente se opta por la utilización de librerías las cuales permitan un desarrollo cómodo utilizando el lenguaje de programación Python. Es por esto que se decide utilizar \textit{SKLearn} para un preprocesamiento extra de los datos como puede ser la normalización de los mismos utilizando normalización Z, \textit{Pandas} para lectura y escritura de datos en formato csv y \textit{TensorFlow} como principal librería de computación de numérica para la creación y entrenamiento de modelos de redes neuronales. \\
+
+\begin{flushright}
+\textit{\footnotesize Se dispone de una explicación del código y los modelos generados en la sección \ref{apendix:scripts} del apéndice.}
+\end{flushright}
+
+Como se observa en la explicación mencionada el modelo generado resulta en un error cuadrado medio final de 0.0010947415 para los datos de entrenamiento y 0.0012081241 para los datos de test. Es por esto que se puede afirmar que el modelo generado tiene un gran nivel de generalización y presición en la estimación del tiempo de ejecución. \\
+
+A su vez, el modelo generado permite predecir la mejor configuración de parámetros con el mejor tiempo de ejecución posible siendo este cuando $MWG = 128$, $NWG = 128$,  $KWG = 32$,  $MDIMC = 32$, $NDIMC = 32$, $MDIMA = 32$, $ NDIMB = 32$, $KWI = 2$, $VWM = 4$, $VWN = 4$, $STRM = 1$, $STRN = 1$, $SA = 1$ y $SB = 1$. \\
+
 \begin{thebibliography}{99}
 %% Do not include separate BibTeX files; if BibTeX is used,
 %% paste the output (contents of .bbl file) here.
@@ -183,5 +268,118 @@ Para el análisis de los datos se evalúan distintas gráficas de lo mismos, com
 \bibitem{osastyle} \url{http://www.opticsinfobase.org/submit/style/jrnls_style.cfm}.
 
 \end{thebibliography}
+
+\clearpage
+
+\onecolumngrid
+
+\section{Apéndice}
+
+\subsection{Imágenes} \label{apendix:images}
+
+\subsubsection{Gráficos de los atributos} \label{apendix:images:attr}
+
+\twocolumngrid
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/run_hist}
+    \caption{Histograma del atributo Run.}
+    \label{figure:run_hist}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/run_density}
+    \caption{Histograma y gráfica de densidad del atributo Run.}
+    \label{figure:run_density}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/mwg_bar}
+    \caption{Gráfico de barras del atributo $M_{wg}$.}
+    \label{figure:mwg_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/nwg_bar}
+    \caption{Gráfico de barras del atributo $N_{wg}$.}
+    \label{figure:nwg_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/kwg_bar}
+    \caption{Gráfico de barras del atributo $K_{wg}$.}
+    \label{figure:kwg_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/mdimc_bar}
+    \caption{Gráfico de barras del atributo $M_{dim}C$.}
+    \label{figure:MDIMC_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/ndimc_bar}
+    \caption{Gráfico de barras del atributo $N_{dim}C$.}
+    \label{figure:ndimc_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/mdima_bar}
+    \caption{Gráfico de barras del atributo $M_{dim}A$.}
+    \label{figure:mdima_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/ndimb_bar}
+    \caption{Gráfico de barras del atributo $N_{dim}B$.}
+    \label{figure:ndimb_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/kwi_bar}
+    \caption{Gráfico de barras del atributo $K_{wi}$.}
+    \label{figure:kwi_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/vwm_bar}
+    \caption{Gráfico de barras del atributo $V_{wm}$.}
+    \label{figure:vwm_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/vwn_bar}
+    \caption{Gráfico de barras del atributo $V_{wn}$.}
+    \label{figure:vwn_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/strm_bar}
+    \caption{Gráfico de barras del atributo $M_{stride}$.}
+    \label{figure:strm_bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/strn_bar}
+    \caption{Gráfico de barras del atributo $N_{stride}$.}
+    \label{figure:strn_bar}
+\end{figure}
+
+\onecolumngrid
+
 
 \end{document}

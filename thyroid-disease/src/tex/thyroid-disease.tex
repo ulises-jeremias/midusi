@@ -19,25 +19,7 @@
 Resumen
 \end{abstract}
 
-%\begin{abstract}This template is provided to demonstrate options
-%for using REV\TeX{}4-1 in preparing manuscripts for submission to
-%JOSA A, JOSA B, \textit{Optics Letters}, and \textit{Applied Optics}. REV\TeX{}4-1 support
-%for OSA journals was added September 2012 as a BETA and updated in April 2013. Users should obtain the
-%REV\TeX{}4-1 package (\url{https://authors.aps.org/revtex4/}) and the OSA REV\TeX{}4-1 style files  (on the Author page of any OSA journal site). Authors in need of a length estimate because of page charge concerns can use the OSA REV\TeX{}4-1 template. The template will not yield an exact estimate but should provide a good approximation of the length of the page proof. Figures, large tables, and complex display math may still affect the estimate. Note that the two-column format is acceptable %for submission and will meet the needs of OSA peer review and production.
-%\end{abstract}
-
-\ocis{}% REPLACE WITH CORRECT OCIS CODES FOR YOUR ARTICLE
-                          % NOTE: \ocis{} IS ALIASED TO \pacs{} BUT MUST
-                          % FORMAT THE TERMS CORRECTLY FOR EACH JOURNAL
-
 \maketitle %% required
-
-%\onecolumngrid
-%\tableofcontents
-
-%\clearpage
-
-%\twocolumngrid
 
 \section{Introducción}
 
@@ -165,7 +147,7 @@ Estos sistemas aprenden y se forman a sí mismos, en lugar de ser programados de
 
 En el campo de las Redes Neuronales, el \textbf{perceptrón}, se refiere a la neurona artificial o unidad básica de inferencia en forma de discriminador lineal, a partir del cual se desarrolla un algoritmo capaz de generar un criterio para seleccionar un sub-grupo a partir de un grupo de componentes más grande. \\
 
-En la figura \ref{figure:perceptron_example} se muestra la arquitectura que determina el comportamiento de un perceptron.
+En la figura (\ref{figure:perceptron_example}) se muestra la arquitectura que determina el comportamiento de un perceptron.
 
 \begin{figure}[H]
     \centering
@@ -174,7 +156,7 @@ En la figura \ref{figure:perceptron_example} se muestra la arquitectura que dete
     \label{figure:perceptron_example}
 \end{figure}
 
-La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura \ref{figure:linear_example}.
+La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura (\ref{figure:linear_example}).
 
 \begin{figure}[H]
     \centering
@@ -200,11 +182,13 @@ Se muestra en la figura (\ref{figure:multiperceptron_example}) un ejemplo de la 
 
 \section{Análisis de datos}
 
-Para el análisis de los datos se evalúan distintas gráficas de lo mismos, como histogramas de los datos nominales y gráficas de dispersión para aquellos datos de tipo numérico, además de ciertas métricas que permiten conocer la correlación entre cada uno de ellos. De este modo se permite observar relaciones entre los distintos atributos del conjunto de datos así como también la relación entre estos mismos y la etiqueta, o \textit{label}.
+Para el análisis de los datos se evalúan distintas gráficas de los mismos, como graficos de barra de los datos categóricos y gráficas de dispersión e histogramas para aquellos datos de tipo numérico, además de ciertas métricas que permiten conocer la correlación entre cada uno de ellos. De este modo se permite observar relaciones entre los distintos atributos del conjunto de datos así como también la relación entre estos mismos y la etiqueta, o \textit{label}.
 
 \begin{flushright}
 \textit{\footnotesize Se dispone de las gráficas correspondientes a los atributos en la sección \ref{apendix:images:attr} del apéndice.}
 \end{flushright}
+
+Se puede observar en lo graficos de dispersión que a menor nivel hormonal, ya sea FTI, TT4 o T3, mayor posibilidades existen de tener hipotiroidismo. A su vez, los gráficos de cajas de los atributos numéricos continuos permite observar una gran cantidad de datos fuera de rango extremo pero se cree que esto es normal dado el dominio del problema. \\
 
 Posteriormente, se calcula el índice de correlación lineal entre los atributos, para comenzar así con el análisis de las relaciones entre cada uno de ellos. El cálculo de los mismos se ve reflejado en la siguiente tabla (\ref{table:correlation_matrix}). \\
 
@@ -233,7 +217,13 @@ Posteriormente, se calcula el índice de correlación lineal entre los atributos
 
 Como se observa en la tabla 1, las tuplas (FTI, TT4) y (T3, TT4) presentan una correlación lineal leve, con un índice de correlación de 0.685 y 0.545 respectivamente. \\
 
-\section{Método Experimental}
+\section{Hipótesis y Objetivos}
+
+Como se menciona anteriormente, en la descripción del data set se cuestiona la integridad de los datos a partir de no poder especificar la procedencia de los mismos y dudar respecto de la entidad otorgante. Es por esto que se tiene como objetivo el poder determinar si estos datos son o no potencialmente útiles para el estudio de las enfermedades de tiroides. Para esto se busca obtener conocimiento que coincida con lo ya sabido sobre el tema y evaluar la posibilidad de generar conocimiento y relaciones nuevas. \\
+
+A partir del análisis de las gráficas, planteadas en la sección anterior, se sabe que cuanto menor sea el nivel de FTI, TT4 y T3, mayor es la posibilidad de tener hipotiroidismo. Sin embargo, no podemos decir lo mismo del TSH dado que no existe una relación obvia de esto. Es por esto que como objetivo se busca confirmar las hipotesis planteadas respecto de las hormonas y determinar la relación entre el TSH y el hipotiroidismo. \\
+
+\section{Método Experimental} \label{section:experimental_method}
 
 En esta sección se detalla todo lo referido al estudio y la creación de los distintos modelos de sistemas inteligentes utilizados para el estudio del conjunto de datos elegido. \\
 
@@ -241,7 +231,7 @@ En esta sección se detalla todo lo referido al estudio y la creación de los di
 
 Para la creación del modelo de Árbol de decisión, se evalúan las distintas posibilidades permitiendo así la construcción de un modelo con un mayor nivel de cobertura sobre el conjunto de datos empleado para entrenamiento y prueba. \\
 
-\textbf{EXPLICAR ELECCIÓN DEL MODELO} \\
+Se descarta la utilización del criterio de selección ID3 dado que el mismo requiere que los atributos sean nominales y para esto se necesitaria discretizar los valores numéricos. \\
 
 Por lo tanto, como se menciona anteriormente, dado que el conjunto de datos presenta atributos numéricos de tipo continuo, no es completamente viable discretizar los mismos en intervalos si es que existe alguna forma de construir un modelo de Árbol de decisión evitando esto. \\
 
@@ -362,7 +352,7 @@ Se entrena un multiperceptron utilizando el operador NeuralNet de RapidMiner con
 
 En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multiperceptron_train_test_performance}) de la seccion \ref{apendix:models:performance} se puede observar la performance del modelo de redes neuronales obtenido aplicando el mismo sobre un conjunto de testing. \\
 
-\section{Análisis de Resultados}
+\section{Análisis de Resultados} \label{section:results_analysis}
 
 En esta sección se analizan los resultados obtenidos en el método experimental con el fin de introducir algunos aspectos escenciales para discución de los mismos y conclusiones a tomar. \\
 
@@ -372,16 +362,16 @@ Este análisis se refuerza con las reglas generadas en las cuales se determina q
 
 El agrupamiento obtenido permite obtener información muy importante para el análisis de este problema. En el mismo existe un pequeño grupo de pacientes sin hipotiroidismo con varias características en común. Entre las más importantes encontramos que el nivel de TSH es más bajo, el nivel de T3 y TT4 son mucho más altos, y el nivel de FTI es mucho más alto lo cual indica que están generando una gran cantidad de hormonas a pesar de posser menor nivel de TSH, el cual nos indica el nivel de hormonas que se encarga de estimular su generación. Esto se contradice con los efectos del hipotiroidismo y por lo tanto se puede descartar la posibilidad de que se de este mal. \\
 
-La gran performance generada por el perceptrón indica la posibilidad de separar linealmente a aquellos pacientes con hipotiroidismo de los que no poseen con una gran precisión. Ésta precisión puede ser aumentada aún más utilizando un perceptrón multicapa, llegando a un accuracy igual a $98.52$ sobre un conjunto de datos de testing equivalente al 30\% del total.
+La gran performance generada por el perceptrón indica la posibilidad de separar linealmente a aquellos pacientes con hipotiroidismo de los que no poseen con una gran precisión. Ésta precisión puede ser aumentada aún más utilizando un perceptrón multicapa, llegando a un accuracy igual a $98.52$ sobre un conjunto de datos de testing equivalente al 30\% del total. \\
 
 
 \section{Discusión y Conclusiones}
 
-\textbf{DISCUSION Y CONCLUSIONES}
+A lo largo del método experimental descripto en la sección \ref{section:experimental_method} se obtienen distintos modelos con una gran precisión, lo cual nos permite concluir que es posible estudiar este problema e incluso llegar a predecir de forma eficiente si, dado un paciente, el mismo tiene hipotiroidismo o no. A su vez, se cree que un estudio similar permitiría estudiar otras enfermedades relacionadas con la tiroides así como tambien encontran mayores relaciones entre los atributos de este conjunto de datos concluyendo que el mismo es util para esto a pesar de la cantidad de datos faltantes y las dudas respecto de su integridad. \\
+
+Este data set permite hallar todas las conclusiones mencionadas en la sección \ref{section:results_analysis} observando entre otras cosas que se puede obtener conocimiento ya existente sobre el tema en mucho menor tiempo y a su vez, generar conocimiento nuevo sobre el tema. Se puede decir entonces que a lo largo del análisis se encuentra una relación fuerte entre los atributos tales como el nivel de FTI y TSH, y demás hormonas. De igual forma, se obtienen las carácteristicas que cumple un reducido conjunto de pacientes que no presenta sintomas de hipotiroidismo determinando si un paciente se encuentra sano, o no, con un gran nivel de precisión. \\ 
 
 \begin{thebibliography}{99}
-%% Do not include separate BibTeX files; if BibTeX is used,
-%% paste the output (contents of .bbl file) here.
 
 \bibitem{revtex-au} \url{https://authors.aps.org/revtex4/}.
 \bibitem{osastyle} \url{http://www.opticsinfobase.org/submit/style/jrnls_style.cfm}.

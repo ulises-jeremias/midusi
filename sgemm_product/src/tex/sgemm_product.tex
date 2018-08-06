@@ -72,15 +72,15 @@ El experimento se ejecutó en una estación de trabajo de escritorio que ejecuta
 
 \subsection{Conjunto de datos a analizar}
 
-Para decidir las tecnologías y conjunto de datos a utilizar se evalúan distintas posibilidades intentardo así optar por la que mejor se adapte a las necesidades y dominio del problema. \\
+Para decidir las tecnologías y conjunto de datos a utilizar se evalúan distintas posibilidades intentando optar por la que mejor se adapte a las necesidades y dominio del problema. \\
 
 Como se muestra en la sub-sección anterior, el conjunto de datos planteado dispone de una gran cantidad de ejemplos \textit{(241600 combinaciones de parámetros)}. Para realizar el análisis sobre este conjunto de datos, se busca utilizar un software el cual permite el análisis de hasta 10000 ejemplos, por lo que se reduce el tamaño del espacio muestral a utilizar buscando no perder información relevante para el dominio del problema. \\
 
 Para esto se decide que sería conveniente evaluar cuáles de esos parámetros son más relevantes y, a su vez, cuáles de los valores tomados por cada uno generan cambios reales en los tiempos de ejecución resultante. Para esto se limita esta evaluación a aquellos parámetros cuyos posibles valores pertenezcan a un conjunto de cardinalidad mayor que dos, dado que así presentan más configuraciones posibles. \\
 
-Se toman los parámetros $M_{wg}$ y $N_wg$ solo las filas que tienen valores pertenecientes a ${64, 128}$, quedando así la mitad de ejemplos. Esta cantidad se puede reducir más fijando alguno de los parámetros, lo cual sería muy conveniente. Luego, se observa que en dos de los datos categóricos, la configuración más eficiente es $(S_{A}, S_{B}) = (1, 1)$. De esto surge la duda de si podrían quitarse los casos en los que uno de ellos, o ambos, sean “no”. Se considera que con esto podría reducirse lo suficiente para poder así procesar los datos. Y finalmente tenemos que buscar cómo podemos dividirlo en dos datasets. \\
+Se toman los parámetros $M_{wg}$ y $N_wg$ solo las filas que tienen valores pertenecientes a $\{64, 128\}$, quedando así la mitad de ejemplos. Esta cantidad se puede reducir más fijando alguno de los parámetros, lo cual sería muy conveniente. Luego, se observa que en dos de los datos categóricos, la configuración más eficiente es $(S_{A}, S_{B}) = (1, 1)$. De esto surge la duda de si podrían quitarse los casos en los que uno de ellos, o ambos, sean “no”. Se considera que con esto podría reducirse lo suficiente para poder así procesar los datos. Y finalmente tenemos que buscar cómo podemos dividirlo en dos data sets. \\
 
-Aplicando dichas reducciones se ve que con el conjunto de datos resultante pierde mucha información potencialmente valiosa. Es por esto que se decide evaluar nuevas posibilidades llegando así a la opción utilizada. \\
+Aplicando dichas reducciones se ve que con el conjunto de datos resultante se pierde mucha información potencialmente valiosa. Es por esto que se decide evaluar nuevas posibilidades llegando así a la opción utilizada. \\
 
 Se opta por analizar y construir modelos de sistemas inteligentes evaluando la totalidad de los datos utilizando nuevas tecnologías de las cuales se detalla más en la siguientes subsecciones. \\
 
@@ -89,6 +89,32 @@ El conjunto de datos permanece intacto comparado con el original a diferencia de
 \section{Marco Teórico}
 
 En esta sección se introduce brevemente conceptos básicos necesarios para abordar los contenidos de las siguientes secciones del informe con mayores referencias y capacidad de entendimiento. \\
+
+\subsection{Representaciones Gráficas}
+
+\subsubsection{Diagrama de dispersión}
+
+Un \textbf{diagrama de dispersión} es un tipo de diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos. \\
+
+Se emplea cuando una variable está bajo el control del experimentador. Si existe un parámetro que se incrementa o disminuye de forma sistemática por el experimentador, se le denomina parámetro de control o variable independiente y habitualmente se representa a lo largo del eje horizontal (eje de las abscisas). La variable medida o dependiente usualmente se representa a lo largo del eje vertical (eje de las ordenadas). Si no existe una variable dependiente, cualquier variable se puede representar en cada eje y el diagrama de dispersión mostrará el grado de correlación (no causalidad) entre las dos variables. \\
+
+Un diagrama de dispersión puede sugerir varios tipos de correlaciones entre las variables con un intervalo de confianza determinado. La correlación puede ser positiva (aumento), negativa (descenso), o nula (las variables no están correlacionadas). 
+
+\subsubsection{Diagrama de Caja}
+
+Un \textbf{diagrama de caja}, también conocido como \textit{diagrama de caja y bigotes}, es un gráfico que está basado en cuartiles y mediante el cual se visualiza la distribución de un conjunto de datos. Está compuesto por un rectángulo (la caja) y dos brazos (los bigotes). \\
+
+Es un gráfico que suministra información sobre los valores mínimo y máximo, los cuartiles Q1, Q2 o mediana y Q3, y sobre la existencia de valores atípicos y la simetría de la distribución. Primero es necesario encontrar la mediana para luego encontrar los 2 cuartiles restantes. \\
+
+Un diagrama de cajas proporcionan una visión general de la simetría de la distribución de los datos; si la mediana no está en el centro del rectángulo, la distribución no es simétrica. Son útiles para ver la presencia de valores atípicos también llamados outliers. Pertenece a las herramientas de las estadística descriptiva. Permite ver como es la dispersión de los puntos con la mediana, los percentiles 25 y 75 y los valores máximos y mínimos. Ponen en una sola dimensión los datos de un histograma, facilitando así el análisis de la información al detectar que el 50\% de la población está en los límites de la caja.
+
+\subsubsection{Histograma}
+
+En estadística, un \textbf{histograma} es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados. Sirven para obtener una "primera vista" general, o panorama, de la distribución de la población, o de la muestra, respecto a una característica, cuantitativa y continua (como la longitud o el peso). De esta manera ofrece una visión de grupo permitiendo observar una preferencia, o tendencia, por parte de la muestra o población por ubicarse hacia una determinada región de valores dentro del espectro de valores posibles (sean infinitos o no) que pueda adquirir la característica.
+
+\subsubsection{Diagramas de Barras}
+
+Un \textbf{diagrama de barras} es una forma de representar gráficamente un conjunto de datos o valores, y está conformado por barras rectangulares de longitudes proporcionales a los valores representados. Los gráficos de barras son usados para comparar dos o más valores. Las barras pueden orientarse horizontal o verticalmente.
 
 \subsection{Clustering}
 
@@ -121,7 +147,7 @@ Estos sistemas aprenden y se forman a sí mismos, en lugar de ser programados de
 
 En el campo de las Redes Neuronales, el \textbf{perceptrón}, se refiere a la neurona artificial o unidad básica de inferencia en forma de discriminador lineal, a partir del cual se desarrolla un algoritmo capaz de generar un criterio para seleccionar un sub-grupo a partir de un grupo de componentes más grande. \\
 
-En la figura \ref{figure:perceptron_example} se muestra la arquitectura que determina el comportamiento de un perceptron.
+En la figura (\ref{figure:perceptron_example}) se muestra la arquitectura que determina el comportamiento de un perceptron.
 
 \begin{figure}[H]
     \centering
@@ -130,7 +156,7 @@ En la figura \ref{figure:perceptron_example} se muestra la arquitectura que dete
     \label{figure:perceptron_example}
 \end{figure}
 
-La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura \ref{figure:linear_example}.
+La limitación de este algoritmo es que si dibujamos en un gráfico estos elementos, se deben poder separar con un hiperplano únicamente los elementos "deseados" discriminándolos (ó \textit{separándolos}) de los \textit{"no deseados"} como se muestra en la figura (\ref{figure:linear_example}).
 
 \begin{figure}[H]
     \centering
@@ -156,23 +182,32 @@ Se muestra en la figura (\ref{figure:multiperceptron_example}) un ejemplo de la 
 
 \section{Análisis de datos}
 
-Para el análisis de los datos se evalúan distintas gráficas de lo mismos, como histogramas de los datos nominales y gráficas de dispersión para aquellos datos de tipo numérico, además de ciertas métricas que permiten conocer la correlación entre cada uno de ellos. De este modo se permite observar relaciones entre los distintos atributos del conjunto de datos así como también la relación entre estos mismos y la etiqueta, o \textit{label}.
+Para el análisis de los datos se evalúan distintas gráficas de los mismos, como histogramas de los datos nominales y gráficas de dispersión para aquellos datos de tipo numérico, además de ciertas métricas que permiten conocer la correlación entre cada uno de ellos. De este modo se permite observar relaciones entre los distintos atributos del conjunto de datos así como también la relación entre estos mismos y la etiqueta, o \textit{label}.
 
 \begin{flushright}
 \textit{\footnotesize Se dispone de las gráficas correspondientes a los atributos en la sección \ref{apendix:images:attr} del apéndice.}
 \end{flushright}
 
+Mencionando alguna de las gráficas que se puenden observar en el apendice tenemos la figura (\ref{figure:run_hist_1}). En la misma se puede observar una asimetría en la distribución de los valores, notando que existe mayor número de instancias en las que el tiempo de ejecución tiende al valor mínimo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{plots/run_hist}
+    \caption{Histograma del atributo Run.}
+    \label{figure:run_hist1}
+\end{figure}
+
 \section{Método Experimental}
 
 En esta sección se detalla todo lo referido al estudio y la creación de los distintos modelos de sistemas inteligentes utilizados para el estudio del conjunto de datos elegido. \\
 
-Para el análisis de este dataset se utilizan dos modelos de sistemas inteligentes detallados a continuación.
+Para el análisis de este dataset se utilizan dos modelos de sistemas inteligentes detallados a continuación. \\
 
 \section{Clustering}
 
 \subsection{K-Means}
 
-Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se evalúa la calidad del modelo resultante utilizando el índice de Silhouette notando que se obtienen mejores resultandos cuando el número de clusters $k$ es igual a 2, obteniendo finalmente un índice de Silhouette igual a 0.824. Una comparativa entre la cantidad de clusters y el indice de Silhouette obtenido se puede observar en la tabla (\ref{table:clusters_silhouette}). \\
+Para la construcción de este modelo se utiliza el algoritmo K-means evaluando las distancias con distancia euclidea. Se evalúa la calidad del modelo resultante utilizando el índice de Silhouette notando que se obtienen mejores resultandos cuando el número de clusters $k$ es igual a 2, obteniendo finalmente un índice de Silhouette igual a 0.824. Cabe destacar que el indice obtenido se calcula utilizando $1000$ ejemplos dado que resulta imposible utilizar la totalidad de los datos debido al consumo exesivo de memoria. Una comparativa entre la cantidad de clusters y el indice de Silhouette obtenido se puede observar en la tabla (\ref{table:clusters_silhouette}). \\
 
 \begin{table}[h!]
     \centering
@@ -221,6 +256,34 @@ Como resultado se obtienen dos agrupamientos, \textit{cluster\_0} y \textit{clus
     \caption{Resultados del clustering generado con k\_means}
     \label{table:k_means}
 \end{table}
+
+\subsection{Redes Neuronales}
+
+Para crear un modelo de redes neuronales que se adapte a las necesidades planteadas anteriormente se opta por la utilización de librerías las cuales permitan un desarrollo cómodo utilizando el lenguaje de programación Python. Es por esto que se decide utilizar \textit{SKLearn} para un preprocesamiento extra de los datos como puede ser la normalización de los mismos utilizando normalización Z, \textit{Pandas} para lectura y escritura de datos en formato csv y \textit{TensorFlow} como principal librería de computación de numérica para la creación y entrenamiento de modelos de redes neuronales. \\
+
+\begin{flushright}
+\textit{\footnotesize Se dispone de una explicación del código y los modelos generados en la sección \ref{apendix:scripts} del apéndice.}
+\end{flushright}
+
+En resumen el modelo se construye a partir de 3 capas ocultas con una cantidad maxima de 256 neuronas y las siempre presentes capas de input y output siendo entonces un total de 5 capas. Se utiliza ReLu como función de actualización, una capa de transposición en el output, el error cuadrático medio como función de costo y AdamOptimicer como optimizador de la función. Se realizan 20 epochs y 256 batchs. Cuanta mayor cantidad de batchs, mas rapido será el entrenamiento pero se consiguen peores resultados. Cabe descatacar que la cantidad de batchs se ve limitada por la cantidad de memoria disponible. \\
+
+Como se observa en la explicación mencionada el modelo generado resulta en un error cuadrático medio de 0.0010947415 para los datos de entrenamiento y 0.0012081241 para los datos de test. Es por esto que se puede afirmar que el modelo generado tiene un gran nivel de generalización y presición en la estimación del tiempo de ejecución. \\
+
+A su vez, el modelo generado permite predecir la mejor configuración de parámetros con el mejor tiempo de ejecución posible siendo este cuando $MWG = 128$, $NWG = 128$,  $KWG = 32$,  $MDIMC = 32$, $NDIMC = 32$, $MDIMA = 32$, $ NDIMB = 32$, $KWI = 2$, $VWM = 4$, $VWN = 4$, $STRM = 1$, $STRN = 1$, $SA = 1$ y $SB = 1$. \\
+
+\section{Análisis de Resultados} \label{section:results_analysis}
+
+En esta sección se analizan los resultados obtenidos en el método experimental con el fin de introducir algunos aspectos escenciales para discución de los mismos y conclusiones a tomar. \\
+
+A partir del agrupamiento generado se puede determinar aquellas configuraciones relevantes para determinar el tiempo de ejecución de la función sabiendo entonces que es indistintos el valor de los parámetros KWG, MDIMA, MDIMB, KWI, STRM y STRN. Por otro lado podemos observar que las configuraciones pertenecientes al $cluster\_0$ serán las más eficientes. \\
+
+Por otro lado, se sabe que es posible encontrar un modelo de redes neuronales el cual, dada una configuración de parámetros, prediga el tiempo de ejecución correspondiente. Particularmente el mismo encuentra así la configuración más eficiente la cual se puede observar en la sección anterior. \\
+
+\section{Discusión y Conclusiones}
+
+A lo largo del método experimental descripto en la sección \ref{section:experimental_method} se obtienen dos modelos con una gran precisión, lo cual nos permite concluir que es posible estudiar este problema e incluso llegar a predecir de forma eficiente el tiempo de ejecución de la función a partir de una configuración de parámetros dada. \\
+
+Al mismo tiempo se determina que el existe un subconjunto de parámetros que afectan en mayor medida al tiempo de ejecución así como tambien otro subconjunto que resulta indistinto al momento de determinar una configuración eficiente. \\
 
 \begin{thebibliography}{99}
 %% Do not include separate BibTeX files; if BibTeX is used,
@@ -342,5 +405,7 @@ Como resultado se obtienen dos agrupamientos, \textit{cluster\_0} y \textit{clus
 \end{figure}
 
 \onecolumngrid
+
+\subsection{Scripts y Modelos} \label{apendix:scripts}
 
 \end{document}

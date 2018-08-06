@@ -1,5 +1,6 @@
 \documentclass[osajnl,twocolumn,showpacs,superscriptaddress,10pt,floatfix]{revtex4-1} %% use 11pt for Applied Optics
 \usepackage{amsmath,amssymb,graphicx,float}
+\usepackage{adjustbox}
 \usepackage[utf8]{inputenc}
 \graphicspath{ {images/} }
 
@@ -51,29 +52,29 @@ El conjunto de datos seleccionado permite la clasificación de pacientes entre a
 \begin{itemize}
     \item \textit{age}: Este atributo corresponde a la edad del paciente. En un valor numérico continuo que toma valores de $R$.
     \item \textit{sex}: Este atributo corresponde al sexo del paciente. Toma valores del conjunto $\{M, F\}$ y presenta valores faltante.
-    \item \textit{on\_thyroxine}:  \textit{Thyroxine} es la principal hormona generada por la glándula tiroides. Cuando se detecta mucha thyroxine y triyodotironina entonces reduce la producción de hormonas \textit{(TSH)}. Relacionado con goitre, este es una forma de reconocer demasiada thyroxine, la cual es causada por hipertiroidismo. Muy poca es causada por hypotiroidismo. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_on\_thyroxine}: Este atributo indica si fue medido \textit{on\_thyroxine}. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{on\_antithyroid\_medication}: Antithyroid es un medicamento que actúa sobre las hormonas tiroides. Este atributo indica si el paciente toma dicha medicación. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{thyroid\_surgery}: Este atributo indica si el paciente ha tenido una cirugía de tiroides. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_hyphotiroid}: Este atributo indica si le fue consultado al paciente si tenía hipotiroidismo. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{query\_hyperthyroid}: Este atributo indica si le fue consultado al paciente si tenía hipertiroidismo. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{pregnant}: Este atributo indica si el paciente esta transitando un embarazo. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{sick}: Este atributo indica si el paciente estaba enfermo al tomar los datos. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{tumor}: Este atributo indica si el paciente tenía un tumor al tomar los datos. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{lithium}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{goitre}: Toma valores del conjunto $\{f, t\}$.
-    \item \textit{TSH\_measured}: Este atributo indica si se mide el \textit{TSH} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{TSH}: Toma valores de $R$.
-    \item \textit{T3\_measured}: Este atributo indica si se mide el \textit{T3} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{T3}: Toma valores de $R$.
-    \item \textit{TT4\_measured}: Este atributo indica si se mide el \textit{TT4} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{TT4}: Toma valores de $R$.
-    \item \textit{T4U\_measured}: Este atributo indica si se mide el \textit{T4U} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{T4U}: Toma valores de $R$.
-    \item \textit{FTI\_measured}: Este atributo indica si se mide el \textit{FTI} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{FTI}: Toma valores de $R$.
-    \item \textit{TBG\_measured}: Este atributo indica si se mide el \textit{TBG} del paciente. Toma valores del conjunto $\{f, t\}$.
-    \item \textit{TBG}: Toma valores de $R$.
+    \item \textit{on\_thyroxine}:  \textit{Thyroxine} es la principal hormona generada por la glándula tiroides. Cuando se detecta mucha thyroxine y triyodotironina entonces reduce la producción de hormonas \textit{(TSH)}. Relacionado con goitre, este es una forma de reconocer demasiada thyroxine, la cual es causada por hipertiroidismo. Muy poca es causada por hypotiroidismo. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_on\_thyroxine}: Este atributo indica si fue medido \textit{on\_thyroxine}. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{on\_antithyroid\_medication}: Antithyroid es un medicamento que actúa sobre las hormonas tiroides. Este atributo indica si el paciente toma dicha medicación. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{thyroid\_surgery}: Este atributo indica si el paciente ha tenido una cirugía de tiroides. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_hyphotiroid}: Este atributo indica si le fue consultado al paciente si tenía hipotiroidismo. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{query\_hyperthyroid}: Este atributo indica si le fue consultado al paciente si tenía hipertiroidismo. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{pregnant}: Este atributo indica si el paciente esta transitando un embarazo. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{sick}: Este atributo indica si el paciente estaba enfermo al tomar los datos. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{tumor}: Este atributo indica si el paciente tenía un tumor al tomar los datos. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{lithium}: Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{goitre}: Inflamación en el cuello causada por una glándula tiroide agrandada. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{TSH\_measured}: Este atributo indica si se mide el \textit{TSH} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{TSH}: Atributo numérico que toma valores de $R$. Representa el nivel de hormonas que tiene en sangre. La TSH le ordena a la glándula tiroides producir y secretar las hormonas tiroideas en la sangre.
+    \item \textit{T3\_measured}: Este atributo indica si se mide el \textit{T3} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{T3}: Atributo numérico que toma valores de $R$. El mismo mide el nivel de triyodotironina en sangre. Afecta a casi todos los procesos fisiológicos en el cuerpo, incluyendo crecimiento y desarrollo, metabolismo, temperatura corporal y ritmo cardíaco. 
+    \item \textit{TT4\_measured}: Este atributo indica si se mide el \textit{TT4} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{TT4}: Atributo numérico que toma valores de $R$. El mismo indica el nivel total de thyroxine.
+    \item \textit{T4U\_measured}: Este atributo indica si se mide el \textit{T4U} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{T4U}: Atributo numérico que toma valores de $R$. T4 uptake. Medida de los sitios de unión de hormonas tiroides desocupados en el TBG. La porción de la hormona tiroidea que queda sin fijar es la encargada de producir la actividad biológica.
+    \item \textit{FTI\_measured}: Este atributo indica si se mide el \textit{FTI} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{FTI}: Atributo numérico que toma valores de $R$. Free thyroxine index. Estima la cantidad de thyroxine libre circulando utilizando TT4 y T4U.
+    \item \textit{TBG\_measured}: Este atributo indica si se mide el \textit{TBG} del paciente. Atributo binominal que toma valores del conjunto $\{f, t\}$.
+    \item \textit{TBG}: Atributo numérico que toma valores de $R$. Mide el nivel de glucoproteina. La glucoproteina se une en la circulación sanguínea a las hormonas tiroideas T4 y T3. La porción de la hormona tiroidea que queda sin fijar es la encargada de producir la actividad biológica. 
 \end{itemize}
 
 \subsection{Recolección del conjunto de datos}
@@ -85,13 +86,39 @@ En la descripción del mismo se duda de la integridad de los datos pero se comen
 \section{Pre-procesamiento de datos}
 \subsection{Conjunto a analizar}
 
-Como se explica en la sección anterior, existen atributos en los cuales se muestra si fue medido un atributo o no. Dado que los valores de estos coinciden con los datos faltantes se opta por la eliminación de dichos atributos. Al mismo tiempo, la cantidad de datos faltantes para la columna correspondiente al atributo TBG es \textbf{PORCENTAJE y SOLUCION}. Teniendo en cuenta esto, se opta por la eliminación de dicha columna dado que se considera que la misma podría llegar a interferir en el proceso del análisis de los datos, quedando finalmente un total de 19 atributos y 3163 ejemplos. \\
+Como se explica en la sección anterior, existen atributos en los cuales se muestra si fue medido un atributo o no. Dado que los valores de estos coinciden con los datos faltantes se opta por la eliminación de dichos atributos. Al mismo tiempo, la cantidad de datos faltantes para la columna correspondiente al atributo TBG es de $2903$ valores el cual se aproxima a un 92\% del total de valores. Teniendo en cuenta esto, se opta por la eliminación de dicha columna dado que se considera que la misma podría llegar a interferir en el proceso del análisis de los datos, quedando finalmente un total de 19 atributos y 3163 ejemplos. \\
 
 Luego se resuelven los datos faltantes de cada atributo utilizando la media de los mismos para los datos continuos y el valor de mayor frecuencia para los valores nominales. Se mapea el valor correspondiente al atributo sexo para que tome valores del conjunto $\{Male, Female\}$, y aquellos atributos booleanos para que los valores pasen de $f$ a $False$ y de $t$ a $True$. \\
 
 \section{Marco Teórico}
 
 En esta sección se introduce brevemente conceptos básicos necesarios para abordar los contenidos de las siguientes secciones del informe con mayores referencias y capacidad de entendimiento. \\
+
+\subsection{Representaciones Gráficas}
+
+\subsubsection{Diagrama de dispersión}
+
+Un \textbf{diagrama de dispersión} es un tipo de diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos. \\
+
+Se emplea cuando una variable está bajo el control del experimentador. Si existe un parámetro que se incrementa o disminuye de forma sistemática por el experimentador, se le denomina parámetro de control o variable independiente y habitualmente se representa a lo largo del eje horizontal (eje de las abscisas). La variable medida o dependiente usualmente se representa a lo largo del eje vertical (eje de las ordenadas). Si no existe una variable dependiente, cualquier variable se puede representar en cada eje y el diagrama de dispersión mostrará el grado de correlación (no causalidad) entre las dos variables. \\
+
+Un diagrama de dispersión puede sugerir varios tipos de correlaciones entre las variables con un intervalo de confianza determinado. La correlación puede ser positiva (aumento), negativa (descenso), o nula (las variables no están correlacionadas). 
+
+\subsubsection{Diagrama de Caja}
+
+Un \textbf{diagrama de caja}, también conocido como \textit{diagrama de caja y bigotes}, es un gráfico que está basado en cuartiles y mediante el cual se visualiza la distribución de un conjunto de datos. Está compuesto por un rectángulo (la caja) y dos brazos (los bigotes). \\
+
+Es un gráfico que suministra información sobre los valores mínimo y máximo, los cuartiles Q1, Q2 o mediana y Q3, y sobre la existencia de valores atípicos y la simetría de la distribución. Primero es necesario encontrar la mediana para luego encontrar los 2 cuartiles restantes. \\
+
+Un diagrama de cajas proporcionan una visión general de la simetría de la distribución de los datos; si la mediana no está en el centro del rectángulo, la distribución no es simétrica. Son útiles para ver la presencia de valores atípicos también llamados outliers. Pertenece a las herramientas de las estadística descriptiva. Permite ver como es la dispersión de los puntos con la mediana, los percentiles 25 y 75 y los valores máximos y mínimos. Ponen en una sola dimensión los datos de un histograma, facilitando así el análisis de la información al detectar que el 50\% de la población está en los límites de la caja.
+
+\subsubsection{Histograma}
+
+En estadística, un \textbf{histograma} es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados. Sirven para obtener una "primera vista" general, o panorama, de la distribución de la población, o de la muestra, respecto a una característica, cuantitativa y continua (como la longitud o el peso). De esta manera ofrece una visión de grupo permitiendo observar una preferencia, o tendencia, por parte de la muestra o población por ubicarse hacia una determinada región de valores dentro del espectro de valores posibles (sean infinitos o no) que pueda adquirir la característica.
+
+\subsubsection{Diagramas de Barras}
+
+Un \textbf{diagrama de barras} es una forma de representar gráficamente un conjunto de datos o valores, y está conformado por barras rectangulares de longitudes proporcionales a los valores representados. Los gráficos de barras son usados para comparar dos o más valores. Las barras pueden orientarse horizontal o verticalmente.
 
 \subsection{Árbol de decisión}
 
@@ -190,13 +217,13 @@ Posteriormente, se calcula el índice de correlación lineal entre los atributos
         age & 1 & -0.007 & -0.269 & -0.091 & -0.194 & 0.015 \\
 
         TSH & -0.007 & 1 & -0.172 & -0.310 & 0.069 & -0.244 \\
-        
+
         T3 & -0.269 & -0.172 & 1 & 0.545 & 0.388 & 0.294 \\
-        
+
         TT4 & -0.091 & -0.310 & 0.545 & 1 & 0.323 & 0.685 \\
-        
+
         T4U & -0.194 & 0.069 & 0.388 & 0.323 & 1 & -0.284 \\
-        
+
         FTI & 0.015 & -0.244 & 0.294 & 0.685 & -0.283 & 1 \\
         \hline
     \end{tabular}
@@ -237,11 +264,11 @@ Para definir el algoritmo a utilizar para la creación de reglas se evalúa cada
 
 \subsubsection{OneR}
 
-Para la construcción de este modelo se trabaja con un conjunto normalizado de los datos utilizando normalización Z sobre los datos de tipo numérico. El antecedente de la regla generada por este algoritmo se define a partir del atributo $FTI$ como se puede observar en la figura (\ref{figure:w_oneR}). \\
+Se evalúa la construcción del modelo sin normalizar los datos para conocer así el atributo más relevante y punto de inflección en el mismo. El antecedente de la regla generada por este algoritmo se define a partir del atributo $FTI$ como se puede observar en la figura (\ref{figure:w_oneR}) y el principal punto de corte se define cuando FTI toma valores entre $51$ y $62$. \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{models/w_oneR}
+    \includegraphics[width=0.35\textwidth]{models/w_oneR}
     \caption{Modelo generado por el algoritmo OneR.}
     \label{figure:w_oneR}
 \end{figure}
@@ -252,7 +279,7 @@ En la figura (\ref{figure:w_oneR_performance}) de la seccion \ref{apendix:models
 
 Para la construcción del modelo de reglas utilizando el algoritmo PRISM se discretiza por frecuencia los datos numéricos probando le performance del modelo para distintos intervalos. Finalmente se opta por discretizar en 7 intervalos obteniendo los resultados que se muestran en la figura (\ref{figure:prism_performance}) de la sección \ref{apendix:models:performance}. \\
 
-\textbf{CONTAR CANTIDAD DE REGLAS OBTENIDAS}
+El algotirmo resulta en un total de 117 reglas de clasificación en las cuales se puede observar que las primeras definidas se ven determinadas por los atributos TSH y FTI, siendo TSH el atributo con mayor frecuencia de aparición en los antecedentes de las primeras reglas.
 
 \section{Clustering}
 
@@ -265,7 +292,7 @@ Como resultado se obtienen dos agrupamientos, \textit{cluster\_0} y \textit{clus
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{ccccccc}
+    \begin{tabular}{ccc}
         hypothyroid & cluster & cantidad \\
         \hline
         hypothyroid & cluster\_1 & 151.0 \\
@@ -281,7 +308,9 @@ Los datos referidos al agrupamiento se pueden ver  en la sección \ref{apendix:m
 
 \section{Redes Neuronales}
 
-Se evalúan distintos modelos de redes neuronales con distintos conjuntos de prueba para evaluar así la performance de los mismos y comparar los modelos resultantes.
+Se evalúan distintos modelos de redes neuronales con distintos conjuntos de prueba para evaluar así la performance de los mismos y comparar los modelos resultantes. \\
+
+En ambos casos se normalizan los datos utilizando normalización Z y se aplica dummy coding para transformar los datos nominales. \\
 
 \subsection{Perceptrón}
 
@@ -295,41 +324,32 @@ Como se menciona en el marco teórico, la función discriminante que define al p
 
 En la tabla (\ref{table:perceptron_attr_weight}) se muestran los pesos asociados a cada atributo. \\
 
-\begin{table}[ht]
-    \begin{tabular}{l|l}
-        Atributo & Peso \\
+\begin{table}[h!]
+    \centering
+    \resizebox{0.45\textwidth}{!}{
+    \begin{tabular}{|ll|ll|}
         \hline
-        sex = Male & -0.006 \\
-        sex = Female & 0.006 \\
-        on\_thyroxine = False & -0.002 \\
-        on\_thyroxine = True & 0.002 \\
-        query\_on\_thyroxine = False & -0.203 \\
-        query\_on\_thyroxine = True & 0.203 \\
-        on\_antithyroid\_medication = False & -0.018 \\
-        on\_antithyroid\_medication = True & 0.018 \\
-        thyroid\_surgery = False & 0.009 \\
-        thyroid\_surgery = True & -0.009 \\
-        query\_hypothyroid = False & -0.046 \\
-        query\_hypothyroid = True & 0.046 \\
-        query\_hyperthyroid = False & -0.002 \\
-        query\_hyperthyroid = True & 0.002 \\
-        pregnant = False & -0.052 \\
-        pregnant = True & 0.052 \\
-        sick = False & -0.019 \\
-        sick = True & 0.019 \\
-        tumor = False & -0.295 \\
-        tumor = True & 0.295 \\
-        lithium = False & -1.955 \\
-        lithium = True & 1.955 \\
-        goitre = False & 0.001 \\
-        goitre = True & -0.001 \\
-        age & -0.016 \\
-        TSH & 0.007 \\
-        T3 & -0.025 \\
-        TT4 & 0.232 \\
-        T4U & -0.102 \\
-        FTI & 0.438 \\
+        Atributo & Peso & Atributo & Peso \\
+        \hline
+        sex = Male & -0.006 & sick = False & -0.019 \\
+        sex = Female & 0.006 & sick = True & 0.019 \\
+        on\_thyroxine = False & -0.002 & tumor = False & -0.295 \\
+        on\_thyroxine = True & 0.002 & tumor = True & 0.295 \\
+        query\_on\_thyroxine = False & -0.203 & lithium = False & -1.955 \\
+        query\_on\_thyroxine = True & 0.203 & lithium = True & 1.955 \\
+        on\_antithyroid\_medication = False & -0.018 & goitre = False & 0.001 \\
+        on\_antithyroid\_medication = True & 0.018 & goitre = True & -0.001 \\
+        thyroid\_surgery = False & 0.009 & age & -0.016 \\
+        thyroid\_surgery = True & -0.009 & TSH & 0.007 \\
+        query\_hypothyroid = False & -0.046 & T3 & -0.025 \\
+        query\_hypothyroid = True & 0.046 & TT4 & 0.232 \\
+        query\_hyperthyroid = False & -0.002 & T4U & -0.102 \\
+        query\_hyperthyroid = True & 0.002 & FTI & 0.438 \\
+        pregnant = False & -0.052 & & \\
+        pregnant = True & 0.052 & & \\
+        \hline
     \end{tabular}
+    }
     \caption{Tabla de pesos para cada atributo utilizando un perceptrón.}
     \label{table:perceptron_attr_weight}
 \end{table}
@@ -344,7 +364,16 @@ En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multipe
 
 \section{Análisis de Resultados}
 
-\textbf{ANALISIS DE RESULTADOS}
+En esta sección se analizan los resultados obtenidos en el método experimental con el fin de introducir algunos aspectos escenciales para discución de los mismos y conclusiones a tomar. \\
+
+A partir del modelo de arbol de decisión generado es posible observar que el nivel de \textit{FTI} es el atributo que más influye en la discriminación de pacientes permitiendo asó determinar si el mismo tiene hipotiroidismo o no. Si el FTI es bajo y el TSH alto entonces existe grandes posibilidades de que el paciente tenga hipotiroidisme. Esto último permite pensar que, siendo el TSH una hormona que ordena la producción y secreción de hormonas tiroideas, la tiroides realiza una baja producción de hormonas y por lo tanto disminuye el FTI. \\
+
+Este análisis se refuerza con las reglas generadas en las cuales se determina que el atributo FTI es el atributo que más influye en la determinación para poder indicar si, dado un paciente, el mismo poseé o no hipotiroidismo. \\
+
+El agrupamiento obtenido permite obtener información muy importante para el análisis de este problema. En el mismo existe un pequeño grupo de pacientes sin hipotiroidismo con varias características en común. Entre las más importantes encontramos que el nivel de TSH es más bajo, el nivel de T3 y TT4 son mucho más altos, y el nivel de FTI es mucho más alto lo cual indica que están generando una gran cantidad de hormonas a pesar de posser menor nivel de TSH, el cual nos indica el nivel de hormonas que se encarga de estimular su generación. Esto se contradice con los efectos del hipotiroidismo y por lo tanto se puede descartar la posibilidad de que se de este mal. \\
+
+La gran performance generada por el perceptrón indica la posibilidad de separar linealmente a aquellos pacientes con hipotiroidismo de los que no poseen con una gran precisión. Ésta precisión puede ser aumentada aún más utilizando un perceptrón multicapa, llegando a un accuracy igual a $98.52$ sobre un conjunto de datos de testing equivalente al 30\% del total.
+
 
 \section{Discusión y Conclusiones}
 
@@ -531,14 +560,14 @@ En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multipe
 
 \subsection{Modelos y Performance}
 
-\subsubsection{Modelos} \label{apendix:models:models} 
+\subsubsection{Modelos} \label{apendix:models:models}
 
 \begin{table}[ht]
     \begin{tabular}{|l|l|l|}
         \hline
         Atributo & cluster\_0 & cluster\_1 \\
         \hline
-        
+
         sex = M & 0.10256410256410256 & 0.2893725992317542 \\
         sex = F & 0.8974358974358975 & 0.7106274007682458 \\
         on\_thyroxine = f & 0.9487179487179487 & 0.8530729833546735 \\
@@ -575,7 +604,7 @@ En las figuras (\ref{figure:multiperceptron_performance}) y (\ref{figure:multipe
     \label{table:k_means_model}
 \end{table}
 
-\subsubsection{Performance} \label{apendix:models:performance} 
+\subsubsection{Performance} \label{apendix:models:performance}
 
 \begin{figure}[h]
     \centering

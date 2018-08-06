@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 
-setwd('midusi/sgemm_product/data')
+setwd("midusi/sgemm_product")
 
-originalCsvData <- read.csv(file = "sgemm_product.csv", head = TRUE, sep = ',')
+originalCsvData <- read.csv(file = "data/sgemm_product.csv", head = TRUE, sep = ",")
 
 runColnames <- c("Run1..ms.", "Run2..ms.", "Run3..ms.", "Run4..ms.")
 
@@ -26,6 +26,7 @@ cat("Attributes Name: ", colnames(originalCsvData), "\n")
 
 write.csv(originalCsvData, "filtered_sgemm_product.csv", row.names = FALSE)
 
-segmmProductData <- read.csv(file = "filtered_sgemm_product.csv", head = TRUE, sep = ',')
+segmmProductData <- read.csv(file = "data/filtered_sgemm_product.csv", head = TRUE, 
+  sep = ",")
 
 View(segmmProductData)

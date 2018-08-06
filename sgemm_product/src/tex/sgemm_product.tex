@@ -18,7 +18,7 @@
 
 \documentclass[osajnl,twocolumn,showpacs,superscriptaddress,10pt]{revtex4-1} %% use 11pt for Applied Optics
 %%\documentclass[osajnl,preprint,showpacs,superscriptaddress,12pt]{revtex4-1} %% use 12pt for preprint option
-\usepackage{amsmath,amssymb,graphicx,float}
+\usepackage{amsmath,amssymb,graphicx,float,minted}
 \usepackage[utf8]{inputenc}
 \graphicspath{ {images/} }
 
@@ -34,7 +34,7 @@
 
 
 \begin{abstract}
-Resumen
+En el presente informe se dispone el análisis realizado a \textit{SGEMM GPU kernel performance Data Set} así como tambien el proceso de construcción de modelos de sistemas inteligentes entrenados con el fin de resolver un problema en forma eficiente y que se ajuste a las necesidades impuestas. Como se explica en el informe, se utilizan variadas tecnologías para la construcción y análisis de estos modelos así como tambien la evaluación de performance de los mismos. \\
 \end{abstract}
 
 \maketitle %% required
@@ -98,7 +98,7 @@ Un \textbf{diagrama de dispersión} es un tipo de diagrama matemático que utili
 
 Se emplea cuando una variable está bajo el control del experimentador. Si existe un parámetro que se incrementa o disminuye de forma sistemática por el experimentador, se le denomina parámetro de control o variable independiente y habitualmente se representa a lo largo del eje horizontal (eje de las abscisas). La variable medida o dependiente usualmente se representa a lo largo del eje vertical (eje de las ordenadas). Si no existe una variable dependiente, cualquier variable se puede representar en cada eje y el diagrama de dispersión mostrará el grado de correlación (no causalidad) entre las dos variables. \\
 
-Un diagrama de dispersión puede sugerir varios tipos de correlaciones entre las variables con un intervalo de confianza determinado. La correlación puede ser positiva (aumento), negativa (descenso), o nula (las variables no están correlacionadas). 
+Un diagrama de dispersión puede sugerir varios tipos de correlaciones entre las variables con un intervalo de confianza determinado. La correlación puede ser positiva (aumento), negativa (descenso), o nula (las variables no están correlacionadas).
 
 \subsubsection{Diagrama de Caja}
 
@@ -194,10 +194,18 @@ Mencionando alguna de las gráficas que se puenden observar en el apendice tenem
     \centering
     \includegraphics[width=0.45\textwidth]{plots/run_hist}
     \caption{Histograma del atributo Run.}
-    \label{figure:run_hist1}
+    \label{figure:run_hist_1}
 \end{figure}
 
-\section{Método Experimental}
+\begin{flushright}
+\textit{\footnotesize Se dispone de una explicación del código utilizado para generar los gráficos en la sección \ref{apendix:scripts} del apéndice.}
+\end{flushright}
+
+\section{Hipótesis y Objetivos}
+
+Analizando las gráficas se cree que existen valores que pueden ser indistintos al momento de definir la mejor configuración de parámetros. Por lo tanto se tiene como objetivo determinar cuales son, así como tambien buscar la forma de construir una red neuronal capaz de predecir el tiempo de ejecución de la función para una configuración dada. \\
+
+\section{Método Experimental} \label{section:experimental_method}
 
 En esta sección se detalla todo lo referido al estudio y la creación de los distintos modelos de sistemas inteligentes utilizados para el estudio del conjunto de datos elegido. \\
 
@@ -269,7 +277,7 @@ En resumen el modelo se construye a partir de 3 capas ocultas con una cantidad m
 
 Como se observa en la explicación mencionada el modelo generado resulta en un error cuadrático medio de 0.0010947415 para los datos de entrenamiento y 0.0012081241 para los datos de test. Es por esto que se puede afirmar que el modelo generado tiene un gran nivel de generalización y presición en la estimación del tiempo de ejecución. \\
 
-A su vez, el modelo generado permite predecir la mejor configuración de parámetros con el mejor tiempo de ejecución posible siendo este cuando $MWG = 128$, $NWG = 128$,  $KWG = 32$,  $MDIMC = 32$, $NDIMC = 32$, $MDIMA = 32$, $ NDIMB = 32$, $KWI = 2$, $VWM = 4$, $VWN = 4$, $STRM = 1$, $STRN = 1$, $SA = 1$ y $SB = 1$. \\
+A su vez, el modelo generado permite predecir la mejor configuración de parámetros con el mejor tiempo de ejecución posible siendo este cuando $M_{wg} = 128$, $N_{wg} = 128$,  $K_{wg} = 32$,  $M_{dim}C = 32$, $N_{dim}C = 32$, $M_{dim}A = 32$, $ N_{dim}B = 32$, $K_{wi} = 2$, $V_{wm} = 4$, $V_{wn} = 4$, $M_{stread} = 1$, $N_{stread} = 1$, $S_A = 1$ y $S_B = 1$. \\
 
 \section{Análisis de Resultados} \label{section:results_analysis}
 
@@ -289,8 +297,14 @@ Al mismo tiempo se determina que el existe un subconjunto de parámetros que afe
 %% Do not include separate BibTeX files; if BibTeX is used,
 %% paste the output (contents of .bbl file) here.
 
-\bibitem{revtex-au} \url{https://authors.aps.org/revtex4/}.
-\bibitem{osastyle} \url{http://www.opticsinfobase.org/submit/style/jrnls_style.cfm}.
+\bibitem{project} \url{https://github.com/ulises-jeremias/midusi}
+\bibitem{r-project} \url{https://www.r-project.org}.
+\bibitem{python 3} \url{https://www.python.org/doc}.
+\bibitem{numpy} \url{www.numpy.org}
+\bibitem{sk-learn} \url{www.scikit-learn.org}
+\bibitem{tensorflow} \url{www.tensorflow.org}
+\bibitem{ml_postgrado} Aceleración de algoritmos de Machine Learning desde un punto de vista Arquitectónico, Curso de Postgrado, Facultad de Informática, UNLP.
+\bibitem{tensorflow_example} https://medium.com/mlreview/a-simple-deep-learning-model-for-stock-price-prediction-using-tensorflow-30505541d877
 
 \end{thebibliography}
 
@@ -300,7 +314,7 @@ Al mismo tiempo se determina que el existe un subconjunto de parámetros que afe
 
 \section{Apéndice}
 
-\subsection{Imágenes} \label{apendix:images}
+\subsection{Imágenes}
 
 \subsubsection{Gráficos de los atributos} \label{apendix:images:attr}
 
@@ -407,5 +421,579 @@ Al mismo tiempo se determina que el existe un subconjunto de parámetros que afe
 \onecolumngrid
 
 \subsection{Scripts y Modelos} \label{apendix:scripts}
+
+Todo el material presentado en esta sección así como tambien los modelos entrenados y scripts utilizados, pero no referenciados en el presente documento, pueden encontrarse en el siguiente repositorio de github: \url{https://github.com/ulises-jeremias/midusi}.
+
+\subsubsection{Gráficos y preprocesamiento de datos}
+
+Se utiliza R para el filtrado y graficado de los datos. Para esto se dispone de dos scrips. \\
+
+El primero permite la creación del conjunto de datos a analizar. Puede nortarse que la linea de código comentada corresponde al filtrado de datos a utilizar en caso de utilizar RapidMiner. \\
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{r}
+  #!/usr/bin/env Rscript
+
+  setwd("midusi/sgemm_product")
+
+  originalCsvData <- read.csv(file = "data/sgemm_product.csv", head = TRUE, sep = ",")
+
+  runColnames <- c("Run1..ms.", "Run2..ms.", "Run3..ms.", "Run4..ms.")
+
+  cat("CSV Data type: ", class(originalCsvData), "\n")
+  cat("Number of Instances: ", nrow(originalCsvData), "\n")
+  cat("Number of Attributes: ", length(originalCsvData), "\n")
+  cat("Attributes Name: ", colnames(originalCsvData), "\n\n\n")
+
+  "originalCsvData <- subset(
+    originalCsvData,
+    MWG == NWG & (MWG == 64 | MWG == 128) &
+    (SA == 1 & SB == 1)
+  )"
+
+  originalCsvData$Run <- rowMeans(originalCsvData[, runColnames], na.rm = TRUE)
+  originalCsvData <- originalCsvData[, !(colnames(originalCsvData) %in% runColnames)]
+
+  cat("Number of Instances: ", nrow(originalCsvData), "\n")
+  cat("Number of Attributes: ", length(originalCsvData), "\n")
+  cat("Attributes Name: ", colnames(originalCsvData), "\n")
+
+  write.csv(originalCsvData, "filtered_sgemm_product.csv", row.names = FALSE)
+
+  segmmProductData <- read.csv(file = "data/filtered_sgemm_product.csv", head = TRUE,
+    sep = ",")
+
+  View(segmmProductData)
+\end{minted}
+
+Luego, se genera un script capaz de graficar cada uno de los atributos utilizando gráficos de baras e histogramas. \\
+
+Para esto, primero incluimos las dependencias y recuperamos los datos del csv de datos filtrados. Para hacer los ploteos se utiliza la librería ggplot2. \\
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{r}
+  #!/usr/bin/env Rscript
+
+  library(ggplot2)
+
+  setwd("midusi/sgemm_product")
+
+  segmmProductData <- read.csv(file = "data/filtered_sgemm_product.csv", head = TRUE,
+    sep = ",")
+
+  View(segmmProductData)
+
+  attach(segmmProductData)
+\end{minted}
+
+Luego, podemos graficar el histograma del atributo Run de la siguiente forma:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{r}
+  # Histogram for Run column
+
+  colmax <- max(Run, na.rm = TRUE)
+  colmin <- min(Run, na.rm = TRUE)
+  binwidth <- (colmax - colmin)/18
+
+  ggplot(data = segmmProductData, aes(x = Run)) + geom_histogram(binwidth = binwidth,
+    aes(fill = ..count..), alpha = 0.9) + labs(x = "Run", y = "Cantidad", fill = "Run")
+\end{minted}
+
+Y podemos obtener el gráfico de barras del atributo $M_{wg}$ de la siguiente forma:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{r}
+  ggplot(data = segmmProductData, aes(x = as.factor(MWG), fill = as.factor(MWG))) +
+    geom_bar() + scale_fill_hue(c = 40) + labs(x = "MWG", y = "Frecuencia", fill = "MWG")
+\end{minted}
+
+\subsubsection{Redes Neuronales}
+
+\textbf{Preprocesamiento de datos} \\
+
+Importamos las librerías necesarias.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  import numpy as np # linear algebra
+  import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+  from sklearn import preprocessing
+  from sklearn.externals import joblib
+\end{minted}
+
+Luego importamos los datos.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  dataframe = pd.read_csv('../../../data/filtered_sgemm_product.csv')
+\end{minted}
+
+Guardamos la cantidad de elementos del dataset.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Dimensions of dataset
+  n = dataframe.shape[0]
+\end{minted}
+
+Randomizamos el orden de los datos para romper el orden predefinido:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  data = dataframe.values
+  np.random.shuffle(data)
+\end{minted}
+
+Separamos los datos en datos de testeo (80%) y datos de entrenamiento (20%):
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Training and test data
+  train_start = 0
+  train_end = int(np.floor(0.8*n))
+  test_start = train_end
+  test_end = n
+  data_train = data[np.arange(train_start, train_end), :]
+  data_test = data[np.arange(test_start, test_end), :]
+\end{minted}
+
+Se adapta el scaler a los datos de entrenamiento, de los cuales obtiene la varianza y media de los datos, con los que luego se realizará la normalización:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+# Preprocesing data
+  scaler_filename = "../models/scaler.save"
+  scaler = preprocessing.StandardScaler().fit(data_train)
+\end{minted}
+
+Luego procedemos a almacenar el scaler para poder utilizarlo luego para normalizar otros datos:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  joblib.dump(scaler, scaler_filename)
+\end{minted}
+
+Se normalizan los datos de testeo y entrenamiento:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  data_train = scaler.transform(data_train)
+  data_test = scaler.transform(data_test)
+\end{minted}
+
+Finalmente se guardan los datos:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  pd.DataFrame(data_train, columns=dataframe.columns.values)
+    .to_csv("../../../data/train_data.csv", encoding='utf-8', index=False)
+
+  pd.DataFrame(data_test, columns=dataframe.columns.values)
+    .to_csv("../../../data/test_data.csv", encoding='utf-8', index=False)
+\end{minted}
+
+\clearpage
+
+\textbf{Entrenamiento de la Red Neuronal}
+
+Importamos las librerias necesarias.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  import numpy as np # linear algebra
+  import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+  from sklearn import preprocessing
+  import tensorflow as tf
+\end{minted}
+
+Importamos los datos de entrenamiento y testing.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  data_train = pd.read_csv('../../../data/train_data.csv').values
+  data_test = pd.read_csv('../../../data/test_data.csv').values
+\end{minted}
+
+Preparamos las matrices de input y output
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Build X and y
+  X_train = data_train[:, :-1]
+  y_train = data_train[:, -1]
+  X_test = data_test[:, :-1]
+  y_test = data_test[:, -1]
+\end{minted}
+
+Creamos los placeholders para los datos de input y output, estos tomaran valores cuando sea necesario utilizarlos:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Placeholder
+  X = tf.placeholder(dtype=tf.float32, shape=[None, n_att])
+  Y = tf.placeholder(dtype=tf.float32, shape=[None])
+\end{minted}
+
+Definimos la cantidad de neuronas de cada capa:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Neurons
+  n_neurons_1 = 256
+  n_neurons_2 = 128
+  n_neurons_3 = 64
+  n_neurons_4 = 32
+\end{minted}
+
+Definimos los pesos y bias y sus respectivos inicializadores para cada neurona de la red:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Initializers
+  sigma = 1
+  weight_initializer = tf.variance_scaling_initializer(mode="fan_avg", distribution="uniform", scale=sigma)
+  bias_initializer = tf.zeros_initializer()
+
+  # Hidden weights
+  W_hidden_1 = tf.Variable(weight_initializer([n_att, n_neurons_1]))
+  bias_hidden_1 = tf.Variable(bias_initializer([n_neurons_1]))
+  W_hidden_2 = tf.Variable(weight_initializer([n_neurons_1, n_neurons_2]))
+  bias_hidden_2 = tf.Variable(bias_initializer([n_neurons_2]))
+  W_hidden_3 = tf.Variable(weight_initializer([n_neurons_2, n_neurons_3]))
+  bias_hidden_3 = tf.Variable(bias_initializer([n_neurons_3]))
+  W_hidden_4 = tf.Variable(weight_initializer([n_neurons_3, n_neurons_4]))
+  bias_hidden_4 = tf.Variable(bias_initializer([n_neurons_4]))
+
+  # Output weights
+  W_out = tf.Variable(weight_initializer([n_neurons_4, 1]))
+  bias_out = tf.Variable(bias_initializer([1]))
+\end{minted}
+
+Definimos las capas de la red, usaremos relu (Re(ctified) L(inear) (U)nit) para estas la cual es una función de activacion que si el input a esta es negativo devuelve 0 y si el input es positivo devuelve el mismo input. El input de esta función será la suma de las multiplicaciones de los input de las neuronas y los pesos más el bias. El output de cada capa sera el input de la siguiente:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Hidden layer
+  hidden_1 = tf.nn.relu(tf.add(tf.matmul(X, W_hidden_1), bias_hidden_1))
+  hidden_2 = tf.nn.relu(tf.add(tf.matmul(hidden_1, W_hidden_2), bias_hidden_2))
+  hidden_3 = tf.nn.relu(tf.add(tf.matmul(hidden_2, W_hidden_3), bias_hidden_3))
+  hidden_4 = tf.nn.relu(tf.add(tf.matmul(hidden_3, W_hidden_4), bias_hidden_4))
+\end{minted}
+
+Luego se define la capa de output:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Output layer (transpose)
+  out = tf.transpose(tf.add(tf.matmul(hidden_4, W_out), bias_out))
+\end{minted}
+
+Se define la funcion de costo la cual usara el error cuadratico medio:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Cost function
+  mse = tf.reduce_mean(tf.squared_difference(out, Y))
+\end{minted}
+
+Se define el optimizador. Usaremos el optimizador Adam:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Optimizer
+  opt = tf.train.AdamOptimizer().minimize(mse)
+\end{minted}
+
+Finalmente, antes de iniciar la sesión definimos el saver, con el que almacenaremos el estado final de la red para usarla en inferencia:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Saver
+  saver = tf.train.Saver()
+\end{minted}
+
+Iniciamos la sesion y corremos la red neuronal con un tamaño de batch de 256, la cantidad de datos evaluados en cada iteracion, lo que permite aumentar el rendimiento, por 20 epochs, la cantidad de veces que se correra la red sobre el total de los datos.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  with tf.Session() as sess:
+
+     # Init
+     sess.run(tf.global_variables_initializer())
+
+     # Fit neural net
+     batch_size = 256
+     mse_train = []
+     mse_test = []
+
+     # Run
+     epochs = 20
+     for e in range(epochs):
+
+         # Shuffle training data
+         shuffle_indices = np.random.permutation(np.arange(len(y_train)))
+         X_train = X_train[shuffle_indices]
+         y_train = y_train[shuffle_indices]
+
+         # Minibatch training
+         for i in range(0, len(y_train) // batch_size):
+             start = i * batch_size
+             batch_x = X_train[start:start + batch_size]
+             batch_y = y_train[start:start + batch_size]
+             # Run optimizer with batch
+             sess.run(opt, feed_dict={X: batch_x, Y: batch_y})
+\end{minted}
+
+Se imprime el progreso de la red:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+            # Show progress
+            if np.mod(i, 50) == 0:
+              # MSE train and test
+              mse_train.append(sess.run(mse, feed_dict={X: X_train, Y: y_train}))
+              mse_test.append(sess.run(mse, feed_dict={X: X_test, Y: y_test}))
+              print('MSE Train: ', mse_train[-1])
+              print('MSE Test: ', mse_test[-1])
+              # Prediction
+              pred = sess.run(out, feed_dict={X: X_test})
+              print('pred: ', pred)
+\end{minted}
+
+El error cuadrado medio final es de 0.0010947415 para los datos de entrenamiento y 0.0012081241 para los datos de test. Por lo que la red logro una buena generalizacion y precision. \\
+
+Finalmente se guarda el estado final de la red para la posterior inferencia:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  save_path = saver.save(sess, "../models/model.ckpt")
+  print("Model saved in path: %s" % save_path)
+\end{minted}
+
+\clearpage
+
+\textbf{Encontrando la mejor configuracion de datos utilizando la red generada previamente} \\
+
+Importamos las librerias necesarias
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  import numpy as np # linear algebra
+  from sklearn.externals import joblib
+  import tensorflow as tf
+\end{minted}
+
+Cargamos el scaler que obtuvimos previamente de los datos de testeo:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # Load scaler
+  scaler = joblib.load("../models/scaler.save")
+\end{minted}
+
+Creamos todas las combinaciones posibles de datos de configuración y las normalizamos utilizando el scaler cargado:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  MWG_NWG_configurations = [64, 128]
+  KWG_configurations = [16, 32]
+  MDIMC_NDIMC_configurations = [8, 16, 32]
+  MDIMA_NDIMB_configurations = [8, 16, 32]
+  KWI_configurations = [2, 8]
+  VWM_VWN_configurations = [1, 2, 4, 8]
+  STRM_STRN_configurations = [0, 1]
+  SA_SB_configurations = [0, 1]
+
+  configurations = np.array([]).reshape(0, 15)
+
+  for MWG_NWG_configuration in MWG_NWG_configurations:
+     for KWG_configuration in KWG_configurations:
+         for MDIMC_NDIMC_configuration in MDIMC_NDIMC_configurations:
+             for MDIMA_NDIMB_configuration in MDIMA_NDIMB_configurations:
+                 for KWI_configuration in KWI_configurations:
+                     for VWM_VWN_configuration in VWM_VWN_configurations:
+                         for STRM_STRN_configuration in STRM_STRN_configurations:
+                             for SA_SB_configuration in SA_SB_configurations:
+                                 configurations = np.vstack([configurations, [
+                                     MWG_NWG_configuration, MWG_NWG_configuration,
+                                     KWG_configuration, MDIMC_NDIMC_configuration,
+                                     MDIMC_NDIMC_configuration,
+                                     MDIMA_NDIMB_configuration,
+                                     MDIMA_NDIMB_configuration, KWI_configuration,
+                                     VWM_VWN_configuration, VWM_VWN_configuration,
+                                     STRM_STRN_configuration,
+                                     STRM_STRN_configuration,
+                                     SA_SB_configuration,
+                                     SA_SB_configuration, 0]])
+
+  normalized_configurations = scaler.transform(configurations)[:, :-1]
+\end{minted}
+
+Reseteamos el grafo para poder cargar los datos del estado final del entrenamiento:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  tf.reset_default_graph()
+\end{minted}
+
+Ahora se definen de nuevo los tensores del grafo que serán cargados utilizando el saver, con lo que tendremos todos los valores tal cual como estaban al final del entrenamiento. \\
+
+Iniciamos la sesion y restauramos los valores. Luego realizaremos la inferencia sobre todas las posibles combinaciones de configuraciones generadas.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  with tf.Session() as sess:
+
+    # Restore variables from disk.
+    saver.restore(sess, "../models/model.ckpt")
+    print("Model restored.")
+
+    pred = sess.run(out, feed_dict={X: normalized_configurations})
+\end{minted}
+
+Dada las predicciones generadas podemos encontrar aquella con el valor de tiempo mínimo y buscar la configuración con la que se relaciona:
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{python}
+  # print min prediction
+  print("Best configuration:")
+  print(configurations[pred.argmin()])
+\end{minted}
+
+Esto nos da $M_{wg} = 128$, $N_{wg} = 128$,  $K_{wg} = 32$,  $M_{dim}C = 32$, $N_{dim}C = 32$, $M_{dim}A = 32$, $ N_{dim}B = 32$, $K_{wi} = 2$, $V_{wm} = 4$, $V_{wn} = 4$, $M_{stread} = 1$, $N_{stread} = 1$, $S_A = 1$ y $S_B = 1$ como la mejor configuración posible.
+
 
 \end{document}
